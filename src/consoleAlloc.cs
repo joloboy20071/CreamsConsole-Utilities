@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 
 namespace CreamsConsole_utils;
-internal class consoleAlloc
+public class consoleAlloc
 {
     private const int MF_BYCOMMAND = 0x00000000;
 
@@ -21,15 +21,15 @@ internal class consoleAlloc
     static extern bool AllocConsole();
     [DllImport("user32.dll")]
     // Documentation: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-deletemenu
-    public static extern int DeleteMenu(IntPtr hMenu, int nPosition, int wFlags);
+    public static extern int DeleteMenu(nint hMenu, int nPosition, int wFlags);
 
     [DllImport("user32.dll")]
     // Documentation: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmenu
-    private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+    private static extern nint GetSystemMenu(nint hWnd, bool bRevert);
 
     [DllImport("kernel32.dll", ExactSpelling = true)]
     // Documentation: https://docs.microsoft.com/en-us/windows/console/getconsolewindow
-    private static extern IntPtr GetConsoleWindow();
+    private static extern nint GetConsoleWindow();
 
 
 }

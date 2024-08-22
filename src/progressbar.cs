@@ -1,6 +1,4 @@
-﻿
-
-namespace CreamsConsole_utils
+﻿namespace CreamsConsole_utils
 {
 
 
@@ -26,35 +24,35 @@ namespace CreamsConsole_utils
 
 
 
-        
+
 
 
         private double GetDoneTiles(int totalTasks, int currentTask, int TotalLengthBar)
         {
-            double procentDone = (currentTask * 100f / totalTasks);
+            double procentDone = currentTask * 100f / totalTasks;
 
             var ratio = 100.0 / TotalLengthBar;
-            double beforeRound = procentDone / ratio;
-            double TilesDone = utilFunctions.round(beforeRound);
+            var beforeRound = procentDone / ratio;
+            var TilesDone = utilFunctions.round(beforeRound);
             return TilesDone;
         }
 
         public int startBar(ProgresBarConfig config)
         {
             Console.CursorVisible = false;
-            int Newcharcount = this.PrintProgress(config.totalTasks, 0, config);
+            var Newcharcount = PrintProgress(config.totalTasks, 0, config);
             return Newcharcount;
         }
         public int UpdateBar(int currentTask, ProgresBarConfig config, int oldcharcount)
         {
-            string remove = "\b";
-            for (int i = 0; i < oldcharcount; i++)
+            var remove = "\b";
+            for (var i = 0; i < oldcharcount; i++)
             {
                 remove += "\b";
             }
             Console.Write(remove);
 
-            int Newcharcount = this.PrintProgress(config.totalTasks, currentTask, config);
+            var Newcharcount = PrintProgress(config.totalTasks, currentTask, config);
             return Newcharcount;
         }
 
@@ -63,21 +61,21 @@ namespace CreamsConsole_utils
 
         private int PrintProgress(int totalTasks, int currentTask, ProgresBarConfig config)
         {
-            int charcount = 0;
+            var charcount = 0;
 
 
-            double tilesDone = GetDoneTiles(totalTasks, currentTask, config.TotalLengthBar);
-            double Tilesremander = config.TotalLengthBar - tilesDone;
-            string taskName = $"{config.TaskName} ";
+            var tilesDone = GetDoneTiles(totalTasks, currentTask, config.TotalLengthBar);
+            var Tilesremander = config.TotalLengthBar - tilesDone;
+            var taskName = $"{config.TaskName} ";
             Console.Write(taskName);
 
-            string Done = "";
-            string rem = "";
-            for (int i = 0; i < tilesDone; i++)
+            var Done = "";
+            var rem = "";
+            for (var i = 0; i < tilesDone; i++)
             {
                 Done += config.barchar;
             }
-            for (int i = 0; i < Tilesremander; i++)
+            for (var i = 0; i < Tilesremander; i++)
             {
                 rem += config.barchar;
             }
@@ -87,7 +85,7 @@ namespace CreamsConsole_utils
                 ColorText.ColorWrite(rem, config.incompleteColor);
             }
             else { ColorText.ColorWrite(Done, config.completedColor); }
-            string taskstatus = $" [{currentTask} / {totalTasks}]";
+            var taskstatus = $" [{currentTask} / {totalTasks}]";
 
             charcount = taskstatus.Length + Done.Length + rem.Length + taskName.Length;
 

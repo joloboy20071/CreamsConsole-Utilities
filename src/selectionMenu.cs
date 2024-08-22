@@ -1,7 +1,4 @@
-﻿
-
-
-namespace CreamsConsole_utils;
+﻿namespace CreamsConsole_utils;
 public class selectionMenu
 {
     public class ItemslectionMenu
@@ -32,7 +29,7 @@ public class selectionMenu
         public void AddChoise(string Title, string returnID = null)
         {
             if (returnID == null) { returnID = Title; }
-            ItemslectionMenu item = new ItemslectionMenu() { title = Title, ReturnID = returnID };
+            var item = new ItemslectionMenu() { title = Title, ReturnID = returnID };
             items.Add(item);
 
         }
@@ -43,40 +40,40 @@ public class selectionMenu
         public void AddChoise(string Title)
         {
 
-            ItemslectionMenu item = new ItemslectionMenu() { title = Title, ReturnID = Title, };
+            var item = new ItemslectionMenu() { title = Title, ReturnID = Title, };
             items.Add(item);
 
         }
     }
-        private static void SelectedPrint(config config, int i)
-        {
-            if (config.items[i].IsHover) { ColorText.ColorWriteLine($" > {config.items[i].title}", config.hoverColor); }
-            else { ColorText.ColorWriteLine($" {config.items[i].title}", config.unselectedColor); }
+    private static void SelectedPrint(config config, int i)
+    {
+        if (config.items[i].IsHover) { ColorText.ColorWriteLine($" > {config.items[i].title}", config.hoverColor); }
+        else { ColorText.ColorWriteLine($" {config.items[i].title}", config.unselectedColor); }
 
 
-        }
-    
+    }
+
 
     internal static void shiftHover(ConsoleKey key, config config)
     {
         if (key == ConsoleKey.UpArrow && config.hoverindex != 0) { config.hoverindex -= 1; config.items[config.hoverindex].IsHover = true; config.items[config.hoverindex + 1].IsHover = false; }
         if (key == ConsoleKey.DownArrow) { if (!(config.hoverindex == config.items.Count - 1)) { config.hoverindex += 1; config.items[config.hoverindex].IsHover = true; config.items[config.hoverindex - 1].IsHover = false; } }
 
-        
+
     }
 
     internal static void printMenu(config config, int startY, int endY = -1)
     {
         if (config.hoverindex == 0) { config.items[0].IsHover = true; }
 
-        for (int i = 0; i < config.items.Count; i++)
+        for (var i = 0; i < config.items.Count; i++)
         {
 
-          
-                SelectedPrint(config, i);
-                Console.WriteLine();
-            
-            
+
+            SelectedPrint(config, i);
+            Console.WriteLine();
+
+
         }
 
 
@@ -98,8 +95,8 @@ public class selectionMenu
             config.items.Add(config.exit);
         }
 
-        int startY = Console.GetCursorPosition().Top;
-        int endY = 0;
+        var startY = Console.GetCursorPosition().Top;
+        var endY = 0;
         Console.CursorVisible = false;
         while (config.active)
         {
@@ -127,7 +124,7 @@ public class selectionMenu
                 return config.items[config.hoverindex].ReturnID;
 
             }
-            if (key == ConsoleKey.Enter && config.items[config.items.Count - 1].IsHover&& config.HasExit) { utilFunctions.ClearBetweenConsoleLines(startY, endY);  config.active = false; }
+            if (key == ConsoleKey.Enter && config.items[config.items.Count - 1].IsHover && config.HasExit) { utilFunctions.ClearBetweenConsoleLines(startY, endY); config.active = false; }
             if (key == ConsoleKey.Escape && config.HasExit) { Console.CursorVisible = true; utilFunctions.ClearBetweenConsoleLines(startY, endY); ; return config.exit.ReturnID; }
             shiftHover(key, config);
 
@@ -144,5 +141,5 @@ public class selectionMenu
     }
 }
 
-    
+
 

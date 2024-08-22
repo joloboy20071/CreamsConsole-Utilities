@@ -1,6 +1,4 @@
-﻿
-
-namespace CreamsConsole_utils;
+﻿namespace CreamsConsole_utils;
 public class MultiSelectionMenu
 {
     public class config
@@ -24,28 +22,28 @@ public class MultiSelectionMenu
         public void AddChoise(string Title, bool IsSelected = false, string returnID = null)
         {
             if (returnID == null) { returnID = Title; }
-            MultiSelectionMenuItem item = new MultiSelectionMenuItem() { title = Title, ReturnID = returnID, isSelected = IsSelected };
+            var item = new MultiSelectionMenuItem() { title = Title, ReturnID = returnID, isSelected = IsSelected };
             items.Add(item);
 
         }
         public void AddChoise(string Title, string returnID = null, bool IsSelected = false)
         {
             if (returnID == null) { returnID = Title; }
-            MultiSelectionMenuItem item = new MultiSelectionMenuItem() { title = Title, ReturnID = returnID, isSelected = IsSelected };
+            var item = new MultiSelectionMenuItem() { title = Title, ReturnID = returnID, isSelected = IsSelected };
             items.Add(item);
 
         }
         public void AddChoise(string Title, string returnID = null)
         {
             if (returnID == null) { returnID = Title; }
-            MultiSelectionMenuItem item = new MultiSelectionMenuItem() { title = Title, ReturnID = returnID, isSelected = false };
+            var item = new MultiSelectionMenuItem() { title = Title, ReturnID = returnID, isSelected = false };
             items.Add(item);
 
         }
         public void AddChoise(string Title, bool IsSelected = false)
         {
 
-            MultiSelectionMenuItem item = new MultiSelectionMenuItem() { title = Title, ReturnID = Title, isSelected = IsSelected };
+            var item = new MultiSelectionMenuItem() { title = Title, ReturnID = Title, isSelected = IsSelected };
             items.Add(item);
 
         }
@@ -98,29 +96,31 @@ public class MultiSelectionMenu
 
     }
 
-    internal static void printMenu(config config, int startY,int endY=-1)
+    internal static void printMenu(config config, int startY, int endY = -1)
     {
         if (config.hoverindex == 0) { config.items[0].IsHover = true; }
-        
-        for (int i = 0; i < config.items.Count; i++) {
-            
-            if ((i < config.items.Count-2))
+
+        for (var i = 0; i < config.items.Count; i++)
+        {
+
+            if (i < config.items.Count - 2)
             {
                 SelectedPrint(config, i);
                 Console.WriteLine();
             }
-            else {
+            else
+            {
                 SelectedPrint(config, i);
             }
         }
-        
+
 
 
     }
 
     internal static void PrintTitle(config config)
     {
-        
+
         ColorText.ColorWrite("\nuse ", ConsoleColor.DarkGray);
         ColorText.ColorWrite("<enter>, <arrow keys>", ConsoleColor.Green);
         ColorText.ColorWrite(" to select a option\n\n", ConsoleColor.DarkGray);
@@ -131,18 +131,18 @@ public class MultiSelectionMenu
     internal static void shiftHover(ConsoleKey key, config config)
     {
         if (key == ConsoleKey.UpArrow && config.hoverindex != 0) { config.hoverindex -= 1; config.items[config.hoverindex].IsHover = true; config.items[config.hoverindex + 1].IsHover = false; }
-        if (key == ConsoleKey.DownArrow) { if (!(config.hoverindex == config.items.Count-1)) { config.hoverindex += 1; config.items[config.hoverindex].IsHover = true; config.items[config.hoverindex - 1].IsHover = false; } }
+        if (key == ConsoleKey.DownArrow) { if (!(config.hoverindex == config.items.Count - 1)) { config.hoverindex += 1; config.items[config.hoverindex].IsHover = true; config.items[config.hoverindex - 1].IsHover = false; } }
         if (key == ConsoleKey.Enter) { config.items[config.hoverindex].isSelected = !config.items[config.hoverindex].isSelected; }
-        if (key == ConsoleKey.Escape) { Console.CursorVisible = true;  config.active = false; }
+        if (key == ConsoleKey.Escape) { Console.CursorVisible = true; config.active = false; }
     }
 
     public static ReturnedData runtimeMenu(config config)
     {
         config.items.Add(config.save);
         config.items.Add(config.exit);
-        
-        int startY = Console.CursorTop;
-        int endY = 0;
+
+        var startY = Console.CursorTop;
+        var endY = 0;
         Console.CursorVisible = false;
         while (config.active)
         {
@@ -164,7 +164,7 @@ public class MultiSelectionMenu
             if (key == ConsoleKey.Enter && config.items[config.items.Count - 2].IsHover)
             {
                 var type = new ReturnedData();
-                for (int i = 0; config.items.Count - 2 > i; i++)
+                for (var i = 0; config.items.Count - 2 > i; i++)
                 {
                     type.returnDict.Add(config.items[i].ReturnID, config.items[i].isSelected);
                     type.returnIDS.Add(config.items[i].ReturnID);
@@ -197,7 +197,6 @@ public class MultiSelectionMenu
 
 
 
-    
 
 
 
@@ -213,5 +212,6 @@ public class MultiSelectionMenu
 
 
 
- 
+
+
 }
