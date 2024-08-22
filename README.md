@@ -22,7 +22,7 @@ string output = selectionMenu.runtimeMenu(config);
 Console.WriteLine(output);
 ```
 ### output
-![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/selectionmenu.png)
+![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/selectionMenu.png)
 
 
 ## Simple multi Selection Menu
