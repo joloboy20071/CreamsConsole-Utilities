@@ -9,6 +9,20 @@
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	<RepositoryUrl>https://github.com/joloboy20071/CreamsConsole-Utilities</RepositoryUrl>
+	<Description>A Console Utilities library inspired by spectre console focused on customization and good looking console applications
+</Description>
+	<Copyright>Creams-productions</Copyright>
+	<PackageProjectUrl>https://github.com/joloboy20071/CreamsConsole-Utilities/tree/master</PackageProjectUrl>
+	<RepositoryType>git</RepositoryType>
+	<Title>Creams Console Utilities</Title>
+	<Company>Creams Productions</Company>
+	<IncludeSymbols>True</IncludeSymbols>
+	<AssemblyVersion>1.0.0.1</AssemblyVersion>
+	<FileVersion>1.0.0.1</FileVersion>
+	<PackageReleaseNotes>Fixed minor isues
+</PackageReleaseNotes>
+	<PackAsTool>False</PackAsTool>
+	<Version>1.0.1</Version>
 	
   </PropertyGroup>
 

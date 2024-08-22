@@ -122,13 +122,13 @@ public class selectionMenu
             {
 
 
-                //config.active = false;
+                utilFunctions.ClearBetweenConsoleLines(startY, endY);
                 Console.CursorVisible = true;
                 return config.items[config.hoverindex].ReturnID;
 
             }
-            if (key == ConsoleKey.Enter && config.items[config.items.Count - 1].IsHover&& config.HasExit) { config.active = false; }
-            if (key == ConsoleKey.Escape && config.HasExit) { Console.CursorVisible = true; return config.exit.ReturnID; }
+            if (key == ConsoleKey.Enter && config.items[config.items.Count - 1].IsHover&& config.HasExit) { utilFunctions.ClearBetweenConsoleLines(startY, endY);  config.active = false; }
+            if (key == ConsoleKey.Escape && config.HasExit) { Console.CursorVisible = true; utilFunctions.ClearBetweenConsoleLines(startY, endY); ; return config.exit.ReturnID; }
             shiftHover(key, config);
 
             //Console.WriteLine(config.hoverindex);
