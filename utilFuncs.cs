@@ -32,7 +32,7 @@ namespace CreamsConsole_utils
 
         public static void ClearCurrentConsoleLine()
         {
-            int currentLineCursor = Console.CursorTop;
+            int currentLineCursor = Console.GetCursorPosition().Top;
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.BufferWidth));
             Console.SetCursorPosition(0, currentLineCursor);
@@ -41,9 +41,9 @@ namespace CreamsConsole_utils
         public static void ClearBetweenConsoleLines(int y1, int y2)
         {
             if (y2 != -1) { 
-            for (int i = 0; i < (y2 - y1)+y1; i++)
+            for (int i = 0; i < (y2 - y1); i++)
             {
-                Console.SetCursorPosition(0, i);
+                Console.SetCursorPosition(0, i+y1);
                 Console.Write(new string(' ', Console.BufferWidth));
             }
 

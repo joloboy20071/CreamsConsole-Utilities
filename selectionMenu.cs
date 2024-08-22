@@ -98,7 +98,7 @@ public class selectionMenu
             config.items.Add(config.exit);
         }
 
-        int startY = Console.CursorTop;
+        int startY = Console.GetCursorPosition().Top;
         int endY = 0;
         Console.CursorVisible = false;
         while (config.active)
