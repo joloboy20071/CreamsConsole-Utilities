@@ -21,6 +21,8 @@ config.description = "im a discription";
 string output = selectionMenu.runtimeMenu(config);
 Console.WriteLine(output);
 ```
+### output
+![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/selectionmenu.png)
 
 
 ## Simple multi Selection Menu
@@ -40,6 +42,9 @@ MultiSelectionMenu.ReturnedData Output = MultiSelectionMenu.runtimeMenu(config);
 
 if (Output.isSaved) { for (int i = 0; i < Output.returnIDS.Count; i++) { Console.WriteLine($"{Output.returnIDS[i]} -> {Output.returnDict[Output.returnIDS[i]]}"); } }
 ```
+### output
+![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/multiselectionmenu.png)
+
 
 ## Simple progress bar
 ```c#
@@ -61,5 +66,8 @@ for (int i = 0; i < progresBarConfig.totalTasks; i++) {
     progressBar.UpdateBar(i + 1, progresBarConfig, bar);// update the progress bar
 }
 ```
+### output
+![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/funcbar.png)
 
+![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/funcbar2.png)
 
