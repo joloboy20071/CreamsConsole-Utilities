@@ -92,8 +92,8 @@ public class MultiSelectionMenu
     }
     public static void SelectedPrint(config config, int i)
     {
-        if (config.items[i].IsHover) { utilFunctions.ColorWriteLine($"> {ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", config.hoverColor); }
-        else { utilFunctions.ColorWriteLine(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), config.unselectedColor); }
+        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"> {ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", config.hoverColor); }
+        else { ColorText.ColorWriteLine(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), config.unselectedColor); }
 
 
     }
@@ -121,9 +121,9 @@ public class MultiSelectionMenu
     internal static void PrintTitle(config config)
     {
         
-        utilFunctions.ColorWrite("\nuse ", ConsoleColor.DarkGray);
-        utilFunctions.ColorWrite("<enter>, <arrow keys>", ConsoleColor.Green);
-        utilFunctions.ColorWrite(" to select a option\n\n", ConsoleColor.DarkGray);
+        ColorText.ColorWrite("\nuse ", ConsoleColor.DarkGray);
+        ColorText.ColorWrite("<enter>, <arrow keys>", ConsoleColor.Green);
+        ColorText.ColorWrite(" to select a option\n\n", ConsoleColor.DarkGray);
 
     }
 
@@ -154,7 +154,7 @@ public class MultiSelectionMenu
             }
             if (config.description != string.Empty)
             {
-                utilFunctions.ColorWriteLine($"{config.description}\n", ConsoleColor.DarkGray);
+                ColorText.ColorWriteLine($"{config.description}\n", ConsoleColor.DarkGray);
             }
 
 

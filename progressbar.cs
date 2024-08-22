@@ -83,16 +83,16 @@ namespace CreamsConsole_utils
             }
             if (Tilesremander != 0.0)
             {
-                utilFunctions.ColorWrite(Done, config.StepColor);
-                utilFunctions.ColorWrite(rem, config.incompleteColor);
+                ColorText.ColorWrite(Done, config.StepColor);
+                ColorText.ColorWrite(rem, config.incompleteColor);
             }
-            else { utilFunctions.ColorWrite(Done, config.completedColor); }
+            else { ColorText.ColorWrite(Done, config.completedColor); }
             string taskstatus = $" [{currentTask} / {totalTasks}]";
 
             charcount = taskstatus.Length + Done.Length + rem.Length + taskName.Length;
 
 
-            utilFunctions.ColorWrite(taskstatus, ConsoleColor.Blue);
+            ColorText.ColorWrite(taskstatus, ConsoleColor.Blue);
             if (Tilesremander == 0.0)
             {
                 Console.Write("\n"); Console.Write("\n");

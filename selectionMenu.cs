@@ -50,8 +50,8 @@ public class selectionMenu
     }
         private static void SelectedPrint(config config, int i)
         {
-            if (config.items[i].IsHover) { utilFunctions.ColorWriteLine($" > {config.items[i].title}", config.hoverColor); }
-            else { utilFunctions.ColorWriteLine($" {config.items[i].title}", config.unselectedColor); }
+            if (config.items[i].IsHover) { ColorText.ColorWriteLine($" > {config.items[i].title}", config.hoverColor); }
+            else { ColorText.ColorWriteLine($" {config.items[i].title}", config.unselectedColor); }
 
 
         }
@@ -85,9 +85,9 @@ public class selectionMenu
     internal static void PrintTitle(config config)
     {
 
-        utilFunctions.ColorWrite("\nuse ", ConsoleColor.DarkGray);
-        utilFunctions.ColorWrite("<enter>, <arrow keys>", ConsoleColor.Green);
-        utilFunctions.ColorWrite(" to select a option\n\n", ConsoleColor.DarkGray);
+        ColorText.ColorWrite("\nuse ", ConsoleColor.DarkGray);
+        ColorText.ColorWrite("<enter>, <arrow keys>", ConsoleColor.Green);
+        ColorText.ColorWrite(" to select a option\n\n", ConsoleColor.DarkGray);
 
     }
 
@@ -111,7 +111,7 @@ public class selectionMenu
             }
             if (config.description != string.Empty)
             {
-                utilFunctions.ColorWriteLine($"{config.description}\n", ConsoleColor.DarkGray);
+                ColorText.ColorWriteLine($"{config.description}\n", ConsoleColor.DarkGray);
             }
 
 

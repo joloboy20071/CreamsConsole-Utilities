@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "selectionmenuDemo", "..\sel
 		{5FA6CD6A-DA38-4E95-9AEE-7A116C9D011B} = {5FA6CD6A-DA38-4E95-9AEE-7A116C9D011B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectionMultiMenuDemo", "..\SelectionMultiMenuDemo\SelectionMultiMenuDemo.csproj", "{8A634F3F-7618-45FC-B5AB-3A86E8D9F710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionMultiMenuDemo", "..\SelectionMultiMenuDemo\SelectionMultiMenuDemo.csproj", "{8A634F3F-7618-45FC-B5AB-3A86E8D9F710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InlineColorDemo", "..\InlineColorDemo\InlineColorDemo.csproj", "{0054E31F-B711-434F-96BD-9EC0E8F55F66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{8A634F3F-7618-45FC-B5AB-3A86E8D9F710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A634F3F-7618-45FC-B5AB-3A86E8D9F710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A634F3F-7618-45FC-B5AB-3A86E8D9F710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0054E31F-B711-434F-96BD-9EC0E8F55F66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0054E31F-B711-434F-96BD-9EC0E8F55F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0054E31F-B711-434F-96BD-9EC0E8F55F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0054E31F-B711-434F-96BD-9EC0E8F55F66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

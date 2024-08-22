@@ -13,22 +13,7 @@ namespace CreamsConsole_utils
 
         }
 
-        public static void ColorWrite(string text, ConsoleColor color)
-        {
-            Console.ResetColor();
-            Console.ForegroundColor = color;
-            Console.Write(text);
-            Console.ResetColor();
-        }
-
-        public static void ColorWriteLine(string text, ConsoleColor color)
-        {
-            Console.ResetColor();
-            Console.ForegroundColor = color;
-            Console.WriteLine(text);
-            Console.ResetColor();
-        }
-
+        
 
         public static void ClearCurrentConsoleLine()
         {
@@ -52,7 +37,13 @@ namespace CreamsConsole_utils
             Console.SetCursorPosition(0, y1);
         } }
 
-        
+        public static class EnumUtil
+        {
+            public static IEnumerable<T> GetValues<T>()
+            {
+                return Enum.GetValues(typeof(T)).Cast<T>();
+            }
+        }
 
 
     }
