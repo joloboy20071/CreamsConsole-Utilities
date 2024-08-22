@@ -169,6 +169,7 @@ public class MultiSelectionMenu
                     type.returnDict.Add(config.items[i].ReturnID, config.items[i].isSelected);
                     type.returnIDS.Add(config.items[i].ReturnID);
                 }
+                utilFunctions.ClearBetweenConsoleLines(startY, endY);
                 type.isSaved = true;
                 //config.active = false;
                 Console.CursorVisible = true;
@@ -187,6 +188,7 @@ public class MultiSelectionMenu
 
         }
         Console.CursorVisible = true;
+        utilFunctions.ClearBetweenConsoleLines(startY, endY);
         return new ReturnedData();
     }
 
