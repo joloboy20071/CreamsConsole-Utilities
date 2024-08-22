@@ -34,7 +34,7 @@ selectionMenu.config config = new selectionMenu.config() { };
 config.AddChoise("Option 1", "returnID 1"); // add option with title and a return id 
 config.AddChoise("Option 2", "returnID 2");
 config.AddChoise("Option 3"); // add option with title and a return id = title
-config.title = "Im a title";
+config.title = "Im a title"; // sets the title
 config.description = "im a discription";
 
 config.HasExit = false;
