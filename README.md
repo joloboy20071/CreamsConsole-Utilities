@@ -5,6 +5,16 @@ A Console Utilities library inspired by spectre console focused on customization
 
 # example code 
 
+## Write Colored text with in line syntax
+
+```c#
+using CreamsConsole_utils;
+
+ColorText.ColorWriteLineIn("foo [/]Blue[/]bar[//] , [/]Green[/]foo [//]bar");
+```
+### output
+![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/inlineConsoleColor.png)
+
 ## Simple Selection menu example
 ```c#
 using CreamsConsole_utils;
