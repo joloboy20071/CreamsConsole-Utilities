@@ -17,8 +17,9 @@ Docs (work in progress): https://docs.creams-productions.nl/projects/creams-cons
 ```c#
 using CreamsConsole_utils;
 
-ColorText.ColorWriteLineIn("foo [/]Blue[/]bar[//] , [/]Green[/]foo [//]bar");
-//Note The blue and Green key words are the same as ConsoleColor color names So any default Console Color works
+ColorText.CreateCustomColor("MidnightBlue", "#191970");//Define your own custom colors. must have hex value when defining custom colors
+ColorText.ColorWriteIn("[/]{Invert}_Red[/]foo[//] [/]{Bold,UnderLine}_MidnightBlue[/]bar[//] , [/]{Italic,Strike}_[/]foo[//][/]Green[/] bar[//]");//Have Inline styling asswell 
+ //Supported style  modifiers are [Invert,Bold,Strike,Italic,UnderLine]
 
 ```
 ### output
