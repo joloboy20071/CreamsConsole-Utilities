@@ -1,29 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CreamsConsole_utils;
+﻿namespace CreamsConsole_utils;
 public class ColorText
 {
+    /// <summary>
+    /// A dict with a color name as a key and returns the consoleColor as value
+    /// </summary>
     public static Dictionary<string, ConsoleColor> allColors = new Dictionary<string, ConsoleColor>();
 
+    /// <summary>
+    /// Contains all availabe color names
+    /// </summary>
+    public static List<string> allColorNames = new List<string>();
 
 
     public static void innitAllColors()
     {
-        foreach (ConsoleColor val in Enum.GetValues(typeof(ConsoleColor)))
+
+        if (allColors.Count != 16)
         {
+            foreach (ConsoleColor val in Enum.GetValues(typeof(ConsoleColor)))
+            {
 
-            var colorBase = $"{val.ToString()}";
-            allColors.Add(colorBase, val);
+                var colorBase = $"{val.ToString()}";
+                allColors.Add(colorBase, val);
+                allColorNames.Add(colorBase);
 
+            }
         }
+        
     }
 
-    internal static string stringhelper(string Stringin)
+    protected internal static string stringhelper(string Stringin)
     {
         var Stringinn = $" {Stringin}";
         var lines = Stringinn.Split("[/]", 3);
@@ -38,7 +44,10 @@ public class ColorText
         }
         return string.Empty;
     }
-
+    /// <summary>
+    /// A function to write Inline colored console text 
+    /// </summary>
+    /// <param name="Stringin"></param>
     public static void ColorWriteIn(string Stringin)
     {
         innitAllColors();
@@ -54,12 +63,26 @@ public class ColorText
 
         }
     }
+
+
+
+    /// <summary>
+    /// A function to write Inline colored console text to a new line
+    /// </summary>
+    /// <param name="streingin"></param>
     public static void ColorWriteLineIn(string streingin)
     {
         ColorWriteIn(streingin);
-
+        Console.WriteLine();
 
     }
+
+    
+    /// <summary>
+    /// Write a string with a Consolecolor
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="color"></param>
     public static void ColorWrite(string text, ConsoleColor color)
     {
         Console.ResetColor();
@@ -68,6 +91,12 @@ public class ColorText
         Console.ResetColor();
     }
 
+
+    /// <summary>
+    /// Write a string with a Consolecolor to a new line
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="color"></param>
     public static void ColorWriteLine(string text, ConsoleColor color)
     {
         Console.ResetColor();

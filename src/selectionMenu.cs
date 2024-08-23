@@ -15,15 +15,21 @@ public class selectionMenu
 
         public ConsoleColor unselectedColor = ConsoleColor.White;
         public ConsoleColor hoverColor = ConsoleColor.Blue;
-        public List<ItemslectionMenu> items = new List<ItemslectionMenu>();
+
         public string title = string.Empty;
         public string description = string.Empty;
+        
+        public string HoverPrefix = " > ";
+
+        public ConsoleKey SelectionKey = ConsoleKey.Enter;
+        public ConsoleKey exitKey = ConsoleKey.Escape;
+
         protected internal int hoverindex = 0;
+        public readonly ItemslectionMenu exit = new ItemslectionMenu() { title = "Exit", ReturnID = "specialKeyExit" };
+        public List<ItemslectionMenu> items = new List<ItemslectionMenu>();
         public bool active = true;
         public bool HasExit = true;
 
-
-        public readonly ItemslectionMenu exit = new ItemslectionMenu() { title = "Exit", ReturnID = "specialKeyExit" };
 
 
         public void AddChoise(string Title, string returnID = null)
@@ -47,7 +53,7 @@ public class selectionMenu
     }
     private static void SelectedPrint(config config, int i)
     {
-        if (config.items[i].IsHover) { ColorText.ColorWriteLine($" > {config.items[i].title}", config.hoverColor); }
+        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{config.items[i].title}", config.hoverColor); }
         else { ColorText.ColorWriteLine($" {config.items[i].title}", config.unselectedColor); }
 
 
@@ -79,14 +85,6 @@ public class selectionMenu
 
 
     }
-    internal static void PrintTitle(config config)
-    {
-
-        ColorText.ColorWrite("\nuse ", ConsoleColor.DarkGray);
-        ColorText.ColorWrite("<enter>, <arrow keys>", ConsoleColor.Green);
-        ColorText.ColorWrite(" to select a option\n\n", ConsoleColor.DarkGray);
-
-    }
 
     public static string runtimeMenu(config config)
     {
@@ -104,7 +102,7 @@ public class selectionMenu
 
             if (config.title != string.Empty)
             {
-                Console.WriteLine($"{config.title}");
+                ColorText.ColorWriteLineIn($"{config.title}");
             }
             if (config.description != string.Empty)
             {
@@ -113,9 +111,9 @@ public class selectionMenu
 
 
             printMenu(config, startY, endY);
-            PrintTitle(config);
+            ColorText.ColorWriteLineIn($"[/]DarkGray[/]\nUse[//][/]Green[/] <{config.SelectionKey.ToString()}>,<arrow keys>[//][/]DarkGray[/] to select a option\n[//]");
             var key = Console.ReadKey().Key;
-            if (key == ConsoleKey.Enter)
+            if (key == config.SelectionKey)
             {
 
 
@@ -124,8 +122,8 @@ public class selectionMenu
                 return config.items[config.hoverindex].ReturnID;
 
             }
-            if (key == ConsoleKey.Enter && config.items[config.items.Count - 1].IsHover && config.HasExit) { utilFunctions.ClearBetweenConsoleLines(startY, endY); config.active = false; }
-            if (key == ConsoleKey.Escape && config.HasExit) { Console.CursorVisible = true; utilFunctions.ClearBetweenConsoleLines(startY, endY); ; return config.exit.ReturnID; }
+            if (key == config.SelectionKey && config.items[config.items.Count - 1].IsHover && config.HasExit) { utilFunctions.ClearBetweenConsoleLines(startY, endY); config.active = false; }
+            if (key == config.exitKey && config.HasExit) { Console.CursorVisible = true; utilFunctions.ClearBetweenConsoleLines(startY, endY); ; return config.exit.ReturnID; }
             shiftHover(key, config);
 
             //Console.WriteLine(config.hoverindex);

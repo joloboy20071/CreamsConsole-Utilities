@@ -5,8 +5,6 @@ VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreamsConsole-Utilities", "CreamsConsole-Utilities.csproj", "{5FA6CD6A-DA38-4E95-9AEE-7A116C9D011B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "..\TestProject1\TestProject1.csproj", "{9378391E-64D9-49F3-AC8C-C6262ED47E67}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "funcbardemo", "..\funcbardemo\funcbardemo.csproj", "{59A0979A-C209-440C-97CC-B4343BD38E8E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "selectionmenuDemo", "..\selectionmenuDemo\selectionmenuDemo.csproj", "{852E2FBF-71A6-430C-9345-789112D2B28B}"
@@ -16,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "selectionmenuDemo", "..\sel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionMultiMenuDemo", "..\SelectionMultiMenuDemo\SelectionMultiMenuDemo.csproj", "{8A634F3F-7618-45FC-B5AB-3A86E8D9F710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InlineColorDemo", "..\InlineColorDemo\InlineColorDemo.csproj", "{0054E31F-B711-434F-96BD-9EC0E8F55F66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InlineColorDemo", "..\InlineColorDemo\InlineColorDemo.csproj", "{0054E31F-B711-434F-96BD-9EC0E8F55F66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +26,6 @@ Global
 		{5FA6CD6A-DA38-4E95-9AEE-7A116C9D011B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FA6CD6A-DA38-4E95-9AEE-7A116C9D011B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FA6CD6A-DA38-4E95-9AEE-7A116C9D011B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9378391E-64D9-49F3-AC8C-C6262ED47E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9378391E-64D9-49F3-AC8C-C6262ED47E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9378391E-64D9-49F3-AC8C-C6262ED47E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9378391E-64D9-49F3-AC8C-C6262ED47E67}.Release|Any CPU.Build.0 = Release|Any CPU
 		{59A0979A-C209-440C-97CC-B4343BD38E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{59A0979A-C209-440C-97CC-B4343BD38E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59A0979A-C209-440C-97CC-B4343BD38E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU

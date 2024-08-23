@@ -7,16 +7,25 @@ public class MultiSelectionMenu
 
         public ConsoleColor unselectedColor = ConsoleColor.White;
         public ConsoleColor hoverColor = ConsoleColor.Blue;
+
         public List<MultiSelectionMenuItem> items = new List<MultiSelectionMenuItem>();
+
         public string title = string.Empty;
         public string description = string.Empty;
+
         public string selectedString = "[X]";
         public string UnselectedString = "[ ]";
-        protected internal int hoverindex = 0;
-        public bool active = true;
+        public string HoverPrefix = " > ";
 
+
+        public ConsoleKey SelectionKey = ConsoleKey.Enter;
+        public ConsoleKey exitKey = ConsoleKey.Escape;
+
+        //Internal stuff
         public readonly MultiSelectionMenuItem save = new MultiSelectionMenuItem() { title = "Save", ReturnID = "specialKey" };
         public readonly MultiSelectionMenuItem exit = new MultiSelectionMenuItem() { title = "Exit", ReturnID = "specialKey" };
+        protected internal int hoverindex = 0;
+        public bool active = true;
 
 
         public void AddChoise( string Title, bool IsSelected = false, string returnID = null)
@@ -90,7 +99,7 @@ public class MultiSelectionMenu
     }
     public static void SelectedPrint(config config, int i)
     {
-        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"> {ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", config.hoverColor); }
+        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", config.hoverColor); }
         else { ColorText.ColorWriteLine(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), config.unselectedColor); }
 
 
@@ -118,22 +127,15 @@ public class MultiSelectionMenu
 
     }
 
-    internal static void PrintTitle(config config)
-    {
-
-        ColorText.ColorWrite("\nuse ", ConsoleColor.DarkGray);
-        ColorText.ColorWrite("<enter>, <arrow keys>", ConsoleColor.Green);
-        ColorText.ColorWrite(" to select a option\n\n", ConsoleColor.DarkGray);
-
-    }
+  
 
 
     internal static void shiftHover(ConsoleKey key, config config)
     {
         if (key == ConsoleKey.UpArrow && config.hoverindex != 0) { config.hoverindex -= 1; config.items[config.hoverindex].IsHover = true; config.items[config.hoverindex + 1].IsHover = false; }
         if (key == ConsoleKey.DownArrow) { if (!(config.hoverindex == config.items.Count - 1)) { config.hoverindex += 1; config.items[config.hoverindex].IsHover = true; config.items[config.hoverindex - 1].IsHover = false; } }
-        if (key == ConsoleKey.Enter) { config.items[config.hoverindex].isSelected = !config.items[config.hoverindex].isSelected; }
-        if (key == ConsoleKey.Escape) { Console.CursorVisible = true; config.active = false; }
+        if (key == config.SelectionKey) { config.items[config.hoverindex].isSelected = !config.items[config.hoverindex].isSelected; }
+        if (key == config.exitKey) { Console.CursorVisible = true; config.active = false; }
     }
 
     public static ReturnedData runtimeMenu(config config)
@@ -150,7 +152,7 @@ public class MultiSelectionMenu
 
             if (config.title != string.Empty)
             {
-                Console.WriteLine($"{config.title}");
+                ColorText.ColorWriteLineIn($"{config.title}");
             }
             if (config.description != string.Empty)
             {
@@ -159,9 +161,9 @@ public class MultiSelectionMenu
 
 
             printMenu(config, startY, endY);
-            PrintTitle(config);
+            ColorText.ColorWriteLineIn($"[/]DarkGray[/]\nUse[//][/]Green[/] <{config.SelectionKey.ToString()}>,<arrow keys>[//][/]DarkGray[/] to select a option\n[//]");
             var key = Console.ReadKey().Key;
-            if (key == ConsoleKey.Enter && config.items[config.items.Count - 2].IsHover)
+            if (key == config.SelectionKey && config.items[config.items.Count - 2].IsHover)
             {
                 var type = new ReturnedData();
                 for (var i = 0; config.items.Count - 2 > i; i++)
@@ -176,7 +178,7 @@ public class MultiSelectionMenu
                 return type;
 
             }
-            if (key == ConsoleKey.Enter && config.items[config.items.Count - 1].IsHover) { config.active = false; }
+            if (key == config.SelectionKey && config.items[config.items.Count - 1].IsHover) { config.active = false; }
 
             shiftHover(key, config);
 
