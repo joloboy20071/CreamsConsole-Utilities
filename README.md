@@ -16,6 +16,8 @@ Docs(work in progress): https://docs.creams-productions.nl/projects/creams-conso
 using CreamsConsole_utils;
 
 ColorText.ColorWriteLineIn("foo [/]Blue[/]bar[//] , [/]Green[/]foo [//]bar");
+//Note The blue and Green key words are the same as ConsoleColor color names So any default Console Color works
+
 ```
 ### output
 ![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/inlineConsoleColor.png)
