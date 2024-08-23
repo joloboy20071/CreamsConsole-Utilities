@@ -5,6 +5,9 @@ A Console Utilities library inspired by spectre console focused on customization
 
 NuGet Package: https://www.nuget.org/packages/CreamsConsole-Utilities
 
+Docs(work in progress): https://docs.creams-productions.nl/projects/creams-console-utilities-package-documentation
+
+
 # example code 
 
 ## Write Colored text with in line syntax
