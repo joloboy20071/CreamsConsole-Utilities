@@ -4,7 +4,8 @@
 A Console Utilities library inspired by spectre console focused on customization and good looking console applications
 
 NuGet Package: https://www.nuget.org/packages/CreamsConsole-Utilities
-Gitnhub Source code: https://github.com/joloboy20071/CreamsConsole-Utilities
+
+Github Source code: https://github.com/joloboy20071/CreamsConsole-Utilities
 
 Docs (work in progress): https://docs.creams-productions.nl/projects/creams-console-utilities-package-documentation
 

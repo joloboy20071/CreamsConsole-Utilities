@@ -21,7 +21,7 @@
 	<FileVersion>1.0.0.1</FileVersion>
 	<PackageReleaseNotes>added support for in line colorwrite</PackageReleaseNotes>
 	<PackAsTool>False</PackAsTool>
-	<Version>1.0.4</Version>
+	<Version>1.0.5</Version>
 	<PackageIcon>black_creams.png</PackageIcon>
 	
   </PropertyGroup>
