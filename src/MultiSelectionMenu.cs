@@ -19,7 +19,7 @@ public class MultiSelectionMenu
         public readonly MultiSelectionMenuItem exit = new MultiSelectionMenuItem() { title = "Exit", ReturnID = "specialKey" };
 
 
-        public void AddChoise(string Title, bool IsSelected = false, string returnID = null)
+        public void AddChoise( string Title, bool IsSelected = false, string returnID = null)
         {
             if (returnID == null) { returnID = Title; }
             var item = new MultiSelectionMenuItem() { title = Title, ReturnID = returnID, isSelected = IsSelected };
