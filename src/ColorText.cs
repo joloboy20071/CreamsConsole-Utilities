@@ -181,7 +181,7 @@ public class ColorText
 
                 writeRGB(newline[0], HexToRGB(cOnsole), StyleString);
 
-                if (newline.Length > 1) { return newline[1]; } else { return string.Empty; }
+                if (newline[1] != "") { return newline[1]; } else { return string.Empty; }
             }
             else {
                 var style = new style();
@@ -196,8 +196,12 @@ public class ColorText
 
 
                 string line = newlines[1];
-                if (newlines.Length > 1) { return line; }
-                else {
+                if (newlines[1] != " ")
+                {
+                    if (newlines[1] != "") { return line; }
+                }
+                else
+                {
                     return string.Empty;
                 }
             } 
@@ -218,7 +222,7 @@ public class ColorText
         {
             var output = stringhelper(strings[0]);
 
-            if (output != null) { strings.Clear(); strings.Add(output); }
+            if (output != string.Empty) { strings.Clear(); strings.Add(output); }
             else { strings.Clear(); }
 
 
@@ -229,6 +233,11 @@ public class ColorText
     {
         Console.OutputEncoding = Encoding.UTF8;
         Console.Write($"\x1b[38;2;{color.R};{color.G};{color.B}{modifireString}m{text}\x1b[0m");
+    }
+    public static void writeRGB(string text, Color color)
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+        Console.Write($"\x1b[38;2;{color.R};{color.G};{color.B}m{text}\x1b[0m");
     }
 
     /// <summary>
