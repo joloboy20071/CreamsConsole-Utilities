@@ -99,8 +99,8 @@ public class MultiSelectionMenu
     }
     public static void SelectedPrint(config config, int i)
     {
-        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", config.hoverColor); }
-        else { ColorText.ColorWriteLine(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), config.unselectedColor); }
+        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
+        else { ColorText.ColorWriteLine(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
 
 
     }
@@ -156,7 +156,7 @@ public class MultiSelectionMenu
             }
             if (config.description != string.Empty)
             {
-                ColorText.ColorWriteLine($"{config.description}\n", ConsoleColor.DarkGray);
+                ColorText.ColorWriteLine($"{config.description}\n", ColorText.HexToRGB(ColorText.allColors["DarkGray"]));
             }
 
 

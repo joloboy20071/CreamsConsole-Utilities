@@ -53,8 +53,8 @@ public class selectionMenu
     }
     private static void SelectedPrint(config config, int i)
     {
-        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{config.items[i].title}", config.hoverColor); }
-        else { ColorText.ColorWriteLine($" {config.items[i].title}", config.unselectedColor); }
+        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{(config.items[i]).title}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
+        else { ColorText.ColorWriteLine((config.items[i].title), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
 
 
     }
@@ -106,7 +106,7 @@ public class selectionMenu
             }
             if (config.description != string.Empty)
             {
-                ColorText.ColorWriteLine($"{config.description}\n", ConsoleColor.DarkGray);
+                ColorText.ColorWriteLine($"{config.description}\n", ColorText.HexToRGB(ColorText.allColors["DarkGray"]));
             }
 
 

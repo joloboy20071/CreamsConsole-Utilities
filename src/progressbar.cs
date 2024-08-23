@@ -8,24 +8,18 @@
 
         public class ProgresBarConfig
         {
-            public string barchar = "\u2014";
+            public string barchar = "\u2501";
             public string TaskName = "placeholder";
             public byte TotalLengthBar = 50;
-            public ConsoleColor completedColor = ConsoleColor.Green;
-            public ConsoleColor incompleteColor = ConsoleColor.Gray;
-            public ConsoleColor StepColor = ConsoleColor.Yellow;
+            public string completedColorHex = ColorText.allColors["Green"];
+            public string incompleteColorHex = ColorText.allColors["Gray"];
+            public string StepColorHex = ColorText.allColors["Yellow"];
+
+            public string TaskStatusColorHex = ColorText.allColors["Blue"];
+            
             public int totalTasks;
 
-
-
-
         }
-
-
-
-
-
-
 
         private double GetDoneTiles(int totalTasks, int currentTask, int TotalLengthBar)
         {
@@ -67,7 +61,7 @@
             var tilesDone = GetDoneTiles(totalTasks, currentTask, config.TotalLengthBar);
             var Tilesremander = config.TotalLengthBar - tilesDone;
             var taskName = $"{config.TaskName} ";
-            Console.Write(taskName);
+            ColorText.ColorWriteIn(taskName);
 
             var Done = "";
             var rem = "";
@@ -81,16 +75,16 @@
             }
             if (Tilesremander != 0.0)
             {
-                ColorText.ColorWrite(Done, config.StepColor);
-                ColorText.ColorWrite(rem, config.incompleteColor);
+                ColorText.ColorWrite(Done, ColorText.HexToRGB(config.StepColorHex));
+                ColorText.ColorWrite(rem, ColorText.HexToRGB(config.incompleteColorHex));
             }
-            else { ColorText.ColorWrite(Done, config.completedColor); }
+            else { ColorText.ColorWrite(Done, ColorText.HexToRGB(config.completedColorHex)); }
             var taskstatus = $" [{currentTask} / {totalTasks}]";
 
             charcount = taskstatus.Length + Done.Length + rem.Length + taskName.Length;
 
 
-            ColorText.ColorWrite(taskstatus, ConsoleColor.Blue);
+            ColorText.ColorWrite(taskstatus, ColorText.HexToRGB(config.TaskStatusColorHex));
             if (Tilesremander == 0.0)
             {
                 Console.Write("\n"); Console.Write("\n");
