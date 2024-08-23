@@ -1,16 +1,30 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 
 
+
+
+
 namespace CreamsConsole_utils;
+[Serializable]
+public class InvalidStyleOption : Exception
+{
+    public InvalidStyleOption(string message) : base(message) {Console.WriteLine(message); }
+
+
+
+}
+
 public class ColorText
 {
-    
+
     /// <summary>
     /// A dict with a color name as a key and returns the hex string as value
     /// </summary>
     public static Dictionary<string, string> allColors = new Dictionary<string, string>() {
-        
+
         { "Black","#000000"},
         { "Blue","#416fe7"},
         { "Cyan","#00FFFF"},
@@ -21,7 +35,7 @@ public class ColorText
         { "DarkMagenta","#8B008B"},
         { "DarkRed","#8B0000"},
         { "DarkYellow","#d7c32a"},
-        { "Gray","#808080"},
+        { "Gray","#a5a5a5"},
         { "Green","#008000"},
         { "Magenta","#FF00FF"},
         { "Red","#FF0000"},
@@ -29,9 +43,92 @@ public class ColorText
         { "Yellow","#FFFF00" }
     };
 
+    public class style
+    {
+        public  bool Bold = false;
+        private string bold = "1;";
+
+        public  bool Italic;
+        private string italic = "3;";
+
+        public  bool UnderLine;
+        private string underline = "4;";
+
+        public  bool Strike;
+        public string strike = "9;";
+
+        public  bool Invert;
+        private string invert = "7;";
+        
+
+
+
+
+        public string ReturnStyleString()
+        {
+            List<string> list = new List<string>() { bold, italic, underline, strike, invert };
+            List<bool> options = new List<bool>() { Bold, Italic, UnderLine, Strike, Invert };
+
+            string styleString = ";";
+            for (int i = 0; i < options.Count; i++) {
+                if (options[i])
+                {
+                    styleString += list[i];
+                }
+            }
+            return styleString.Remove(styleString.Length - 1);
+
+
+        }
+
+
+
+
+    }
+    public static void setOptions(string option, style style)
+    {
+        
+        try
+        {
+            switch (option)
+            {
+
+                case "Bold":
+                    style.Bold = true;
+                    break;
+                case "Italic":
+                    style.Italic = true;
+                    break;
+                case "UnderLine":
+                    style.UnderLine = true;
+                    break;
+                case "Strike":
+                    style.Strike = true;
+                    break;
+                case "Invert":
+                    style.Invert = true;
+                    break;
+
+
+
+            }
+
+
+
+        }
+        catch { throw new InvalidStyleOption($"optiom {option} was invalid"); }
+  
+
+    }
+
+    public style DefaultStyle = new style();
+
     public static List<string> CustomColorNames = new List<string>();
 
-
+    public static string testfunc(string inn)
+    {
+        return stringhelper(inn);
+    }
 
     public static Color HexToRGB(string HexString)
     {
@@ -46,6 +143,20 @@ public class ColorText
         return RGB;
     }
 
+    protected internal static string StyleHelper(string Stringin)
+    {
+        string options = Stringin.Replace("{", "").Replace("}_", "").Replace(" ", "");
+        string[] optionArrry = options.Split(',');
+        style style = new style();
+        for (int i = 0; i < optionArrry.Length; i++) {
+            setOptions(optionArrry[i], style);
+        }
+
+        return style.ReturnStyleString();
+
+    }
+
+
 
     protected internal static string stringhelper(string Stringin)
     {
@@ -54,16 +165,46 @@ public class ColorText
         Console.Write($"{lines[0].Remove(0, 1)}");
         if (lines.Length > 2)
         {
-            var cOnsole = allColors[lines[1]];
-            var newlines = lines[2].Split("[//]", 2);
+            
+            if (lines[1].Contains("}_")) {
+                string cOnsole;
+                var styleANDColor = lines[1].Split("}_");
+                if (styleANDColor[1] != "")
+                {
+                     cOnsole = allColors[styleANDColor[1]];
+                }
+                else {  cOnsole = allColors["Gray"]; }
+
+
+                string StyleString = StyleHelper(styleANDColor[0]);
+                string[] newline = lines[2].Split("[//]", 2);
+
+                writeRGB(newline[0], HexToRGB(cOnsole), StyleString);
+
+                if (newline.Length > 1) { return newline[1]; } else { return string.Empty; }
+            }
+            else {
+                var style = new style();
+                var cOnsole = allColors[lines[1]];
+
+
+                string[] newlines = lines[2].Split("[//]", 2);
 
 
 
-            ColorWrite(newlines[0], HexToRGB(cOnsole));
-            if (newlines.Length > 1) { return newlines[1]; }
+                writeRGB(newlines[0], HexToRGB(cOnsole), style.ReturnStyleString());
+
+
+                string line = newlines[1];
+                if (newlines.Length > 1) { return line; }
+                else {
+                    return string.Empty;
+                }
+            } 
         }
+        
         return string.Empty;
-    }
+    } 
     /// <summary>
     /// A function to write Inline colored console text 
     /// </summary>
@@ -77,7 +218,7 @@ public class ColorText
         {
             var output = stringhelper(strings[0]);
 
-            if (output != string.Empty) { strings.Clear(); strings.Add(output); }
+            if (output != null) { strings.Clear(); strings.Add(output); }
             else { strings.Clear(); }
 
 
