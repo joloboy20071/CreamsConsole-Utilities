@@ -12,7 +12,7 @@ Docs (work in progress): https://docs.creams-productions.nl/projects/creams-cons
 
 # example code 
 
-## Write Colored text with in line syntax
+## Write Colored text with in line syntax EXPEREMENTAL!
 
 ```c#
 using CreamsConsole_utils;
