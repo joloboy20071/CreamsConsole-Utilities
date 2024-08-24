@@ -24,7 +24,7 @@ public class MultiSelectionMenu
 
         //Internal stuff
         public readonly MultiSelectionMenuItem save = new MultiSelectionMenuItem() { title = "Save", ReturnID = "specialKey" };
-        public readonly MultiSelectionMenuItem exit = new MultiSelectionMenuItem() { title = "Exit", ReturnID = "specialKey" };
+        public readonly MultiSelectionMenuItem exit = new MultiSelectionMenuItem() { title = "Exit", ReturnID = "specialKeyExit" };
         protected internal int hoverindex = 0;
         public bool active = true;
 
@@ -86,14 +86,13 @@ public class MultiSelectionMenu
     internal static string ReturnItemString(MultiSelectionMenuItem item, string selectedString, string UnselectedString)
     {
 
-        if (item.ReturnID != "specialKey")
+        if (item.ReturnID != "specialKey" && item.ReturnID != "specialKeyExit")
         {
             if (item.isSelected) { return $"{selectedString} {item.title}"; }
             else { return $"{UnselectedString} {item.title}"; }
         }
         else
         {
-
             return $"{item.title}";
         }
 
@@ -107,8 +106,26 @@ public class MultiSelectionMenu
         }
         else
         {
-            if (config.items[i].IsHover) { ColorText.ColorWrite($"{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
-            else { ColorText.ColorWrite(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
+            if (config.items[i].IsHover)
+            {
+                if (config.items[i].ReturnID != "specialKey")
+                {
+                    ColorText.ColorWrite($"{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", ColorText.ConsoleColorToRGB(config.hoverColor));
+                }
+                else
+                {
+                    ColorText.ColorWriteLine($"\n{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", ColorText.ConsoleColorToRGB(config.hoverColor));
+                }
+            }
+
+            else
+            {
+                if (config.items[i].ReturnID != "specialKey")
+                {
+                    ColorText.ColorWrite(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), ColorText.ConsoleColorToRGB(config.unselectedColor));
+                }
+                else { ColorText.ColorWriteLine($"\n{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", ColorText.ConsoleColorToRGB(config.unselectedColor)); }
+            }
 
         }
 
