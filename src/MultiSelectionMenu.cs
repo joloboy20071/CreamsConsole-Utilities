@@ -16,6 +16,7 @@ public class MultiSelectionMenu
         public string selectedString = "[X]";
         public string UnselectedString = "[ ]";
         public string HoverPrefix = " > ";
+        public bool useSpacesBetweenOptions = true;
 
 
         public ConsoleKey SelectionKey = ConsoleKey.Enter;
@@ -99,8 +100,17 @@ public class MultiSelectionMenu
     }
     public static void SelectedPrint(config config, int i)
     {
-        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
-        else { ColorText.ColorWriteLine(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
+        if (config.useSpacesBetweenOptions)
+        {
+            if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
+            else { ColorText.ColorWriteLine(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
+        }
+        else
+        {
+            if (config.items[i].IsHover) { ColorText.ColorWrite($"{config.HoverPrefix}{ReturnItemString(config.items[i], config.selectedString, config.UnselectedString)}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
+            else { ColorText.ColorWrite(ReturnItemString(config.items[i], config.selectedString, config.UnselectedString), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
+
+        }
 
 
     }

@@ -20,6 +20,7 @@ public class selectionMenu
         public string description = string.Empty;
         
         public string HoverPrefix = " > ";
+        public bool useSpacesBetweenOptions = true;
 
         public ConsoleKey SelectionKey = ConsoleKey.Enter;
         public ConsoleKey exitKey = ConsoleKey.Escape;
@@ -53,8 +54,16 @@ public class selectionMenu
     }
     private static void SelectedPrint(config config, int i)
     {
-        if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{(config.items[i]).title}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
-        else { ColorText.ColorWriteLine((config.items[i].title), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
+        if (config.useSpacesBetweenOptions)
+        {
+            if (config.items[i].IsHover) { ColorText.ColorWriteLine($"{config.HoverPrefix}{(config.items[i]).title}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
+            else { ColorText.ColorWriteLine((config.items[i].title), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
+        }
+        else
+        {
+            if (config.items[i].IsHover) { ColorText.ColorWrite($"{config.HoverPrefix}{(config.items[i]).title}", ColorText.ConsoleColorToRGB(config.hoverColor)); }
+            else { ColorText.ColorWrite((config.items[i].title), ColorText.ConsoleColorToRGB(config.unselectedColor)); }
+        }
 
 
     }

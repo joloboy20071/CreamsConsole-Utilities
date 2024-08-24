@@ -23,7 +23,7 @@ ColorText.ColorWriteIn("[/]{Invert}_Red[/]foo[//] [/]{Bold,UnderLine}_MidnightBl
 
 ```
 ### output
-![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/inlineConsoleColor.png)
+![alt text](https://i.imgur.com/rojWCZ7.png)
 
 ## Simple Selection menu example
 ```c#
@@ -42,7 +42,7 @@ string output = selectionMenu.runtimeMenu(config);
 Console.WriteLine(output);
 ```
 ### output
-![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/selectionMenu.png)
+![alt text](https://i.imgur.com/xX7wYdH.png)
 
 
 ## Simple Selection menu example without exit
@@ -62,7 +62,7 @@ string output = selectionMenu.runtimeMenu(config);
 Console.WriteLine(output);
 ```
 ### output
-![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/selectionMenu1.png)
+![alt text](https://i.imgur.com/UFl2ylq.png)
 
 
 ## Simple multi Selection Menu
@@ -83,7 +83,7 @@ MultiSelectionMenu.ReturnedData Output = MultiSelectionMenu.runtimeMenu(config);
 if (Output.isSaved) { for (int i = 0; i < Output.returnIDS.Count; i++) { Console.WriteLine($"{Output.returnIDS[i]} -> {Output.returnDict[Output.returnIDS[i]]}"); } }
 ```
 ### output
-![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/multiselectionmenu.png)
+![alt text](https://i.imgur.com/9t3W7uI.png)
 
 
 ## Simple progress bar
@@ -107,7 +107,7 @@ for (int i = 0; i < progresBarConfig.totalTasks; i++) {
 }
 ```
 ### output
-![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/funcbar.png)
+![alt text](https://i.imgur.com/4yoaMbo.png)
 
-![alt text](https://github.com/joloboy20071/CreamsConsole-Utilities/blob/master/pics/funcbar2.png)
+![alt text](https://i.imgur.com/EN118Rt.png)
 
