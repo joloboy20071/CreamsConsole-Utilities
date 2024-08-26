@@ -11,10 +11,11 @@
             public string barchar = "\u2501";
             public string TaskName = "placeholder";
             public byte TotalLengthBar = 50;
+
+            // standard Colors
             public string completedColorHex = ColorText.allColors["Green"];
             public string incompleteColorHex = ColorText.allColors["Gray"];
             public string StepColorHex = ColorText.allColors["Yellow"];
-
             public string TaskStatusColorHex = ColorText.allColors["Blue"];
             
             public int totalTasks;
@@ -87,7 +88,7 @@
             ColorText.ColorWrite(taskstatus, ColorText.HexToRGB(config.TaskStatusColorHex));
             if (Tilesremander == 0.0)
             {
-                Console.Write("\n"); Console.Write("\n");
+                Console.Write("\n\n");
                 Console.SetCursorPosition(0, Console.CursorTop);
                 Console.CursorVisible = true;
             }

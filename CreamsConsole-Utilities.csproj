@@ -19,9 +19,10 @@
 	<IncludeSymbols>True</IncludeSymbols>
 	<AssemblyVersion>1.0.0.1</AssemblyVersion>
 	<FileVersion>1.0.0.1</FileVersion>
-	<PackageReleaseNotes>added support for in line colorwrite</PackageReleaseNotes>
+	<PackageReleaseNotes>added support for in Box rendering of any size
+</PackageReleaseNotes>
 	<PackAsTool>False</PackAsTool>
-	<Version>1.1.1</Version>
+	<Version>1.2.0</Version>
 	<PackageIcon>black_creams.png</PackageIcon>
 	<PackageTags>Console App;Console Styling;Console Utilities;Utilities;Creams Productions;</PackageTags>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>

@@ -139,7 +139,9 @@ public class ColorText
 
     public static Color ConsoleColorToRGB(ConsoleColor color)
     {
+
         var RGB = HexToRGB(allColors[color.ToString()]);
+
         return RGB;
     }
 
@@ -279,6 +281,13 @@ public class ColorText
         allColors[name] = Hexcode;
         CustomColorNames.Add(name);
 
+
+    }
+
+    public static bool PerformanceTesting(string message)
+    {
+        ColorWriteLineIn(message);
+        return true;
 
     }
 

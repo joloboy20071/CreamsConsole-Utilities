@@ -12,7 +12,26 @@ Docs (work in progress): https://docs.creams-productions.nl/projects/creams-cons
 
 # example code 
 
-## Write Colored text with in line syntax EXPEREMENTAL!
+## Create boxes (WIP) EXPEREMENTAL!
+
+```c#
+using CreamsConsole_utils;
+
+int collum = (Console.BufferWidth / 3);
+int row = (Console.BufferHeight / 3);
+
+Boxrendering.RenderBoxAtplace(collum * 2, (row * 2)+1, new Location((0 * collum), 0), "Box 1");
+Boxrendering.RenderBoxAtplace(collum * 1, (row * 1) + 1, new Location((2*collum),0), "BOX 2.1");
+Boxrendering.RenderBoxAtplace((collum * 1), (row * 1)+1 , new Location((2 * collum), (row * 1)), "BOX 2.2");
+Boxrendering.RenderBoxAtplace(collum * 3, (row * 1) + 1, new Location(0, (row*2)),"BOX 3");
+```
+### output
+![alt text](https://i.imgur.com/IXDKfE2.png)
+
+
+
+
+## Write Colored text with in line syntax
 
 ```c#
 using CreamsConsole_utils;
