@@ -9,10 +9,16 @@ Github Source code: https://github.com/joloboy20071/CreamsConsole-Utilities
 
 Docs (work in progress): https://docs.creams-productions.nl/projects/creams-console-utilities-package-documentation
 
+## Projects
 
-# example code 
+A simple Terminal Euro Truck 2 Dashboard project made with Creams Console Utilities
+![alt text](https://i.imgur.com/EhKxPac.pngc)
 
-## Create boxes (WIP) EXPEREMENTAL!
+
+
+# example code
+
+## Create Simple TUI's With Creams Console Utilities
 
 ```c#
 using CreamsConsole_utils;
@@ -28,6 +34,37 @@ Boxrendering.RenderBoxAtplace(collum * 3, (row * 1) + 1, new Location(0, (row*2)
 ### output
 ![alt text](https://i.imgur.com/IXDKfE2.png)
 
+
+## quick Experemental Documentation of TUI  
+```C#
+public class Location(int x, int y)
+// stores a location in the terminal
+
+public class BoxType(Location location, int width, int height, string? Title) 
+//Holdes box data
+
+public static void WriteSingleInBox(string messgae  ,BoxType box , int StartAtY = 0, Color? color = null)
+// writes string to box Without newline
+
+public static void WriteLineInBox(string messgae, BoxType box, int startAtX=0, int StartAtY = 0,bool Center=false, Color? color = null)
+// samge as WriteSinglelineinBox but with new line 
+
+public static void WriteLineInLineBox(string messgae, BoxType box, int startAtX = 0, int StartAtY = 0, bool Center = false, Color? color = null,int? limit=null)
+// sane as WriteLineInBox but with in line color 
+
+public static void ClearBox(BoxType box) 
+// Clears all lines in a box
+
+public static void writeAtPost(string message, int x, int y, Color color)
+// Write message at a posistion in the terminal
+
+public static void writeInLineAtPost(string message, int x, int y)
+// same as writeAtPost but with a new line
+
+public static BoxType RenderBoxAtplace(int witdh, int height, Location location, string? title=null, Color? colorFrame = null, Color? colorTitle = null)
+//Writes a box to terminal and return the box type
+
+```
 
 
 
