@@ -215,9 +215,9 @@ public class ColorText
     /// A function to write Inline colored console text 
     /// </summary>
     /// <param name="Stringin"></param>
-    public static void ColorWriteIn(string Stringin)
+    public static void ColorWriteIn(string Stringin, int? Limit=null)
     {
-
+        if(Limit == null) {
         var strings = new List<string>();
         strings.Add(Stringin);
         while (strings.Count! > 0)
@@ -228,7 +228,7 @@ public class ColorText
             else { strings.Clear(); }
 
 
-        }
+        }}
     }
 
     public static void writeRGB(string text, Color color, string modifireString = null)
