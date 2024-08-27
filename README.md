@@ -23,16 +23,28 @@ A simple Terminal Euro Truck 2 Dashboard project made with Creams Console Utilit
 ```c#
 using CreamsConsole_utils;
 
-int collum = (Console.BufferWidth / 3);
+Console.OutputEncoding = Encoding.UTF8;
+
+int collum = (Console.BufferWidth / 5);
 int row = (Console.BufferHeight / 3);
 
-Boxrendering.RenderBoxAtplace(collum * 2, (row * 2)+1, new Location((0 * collum), 0), "Box 1");
-Boxrendering.RenderBoxAtplace(collum * 1, (row * 1) + 1, new Location((2*collum),0), "BOX 2.1");
-Boxrendering.RenderBoxAtplace((collum * 1), (row * 1)+1 , new Location((2 * collum), (row * 1)), "BOX 2.2");
-Boxrendering.RenderBoxAtplace(collum * 3, (row * 1) + 1, new Location(0, (row*2)),"BOX 3");
+var box1 = Boxrendering.RenderBoxAtplace(collum * 3, (row * 2)+1, new Location((0 * collum), 0), "Box 1");
+var box21 = Boxrendering.RenderBoxAtplace(collum * 1, (row * 1) + 1, new Location((3*collum),0), "BOX 2.1");
+var box22=  Boxrendering.RenderBoxAtplace((collum * 1), (row * 1)+1 , new Location((3 * collum), (row * 1)), "BOX 2.2");
+var box3 = Boxrendering.RenderBoxAtplace(collum * 5, (row * 1) + 1, new Location(0, (row*2)),"BOX 3");
+
+
+
+foreach (var box in Boxrendering.boxTypes) {
+    Boxrendering.WriteLineInBox(FiggleFonts.Standard.Render($"{box.WritableHeight} X {box.WritableWidth}"), box, 0,0,false, ColorText.HexToRGB(ColorText.allColors["Gray"]));
+    string area = $"   Writable box area: {box.WritableHeight} X {box.WritableWidth}";
+}
+
+Console.ReadKey();
+Console.SetCursorPosition(Console.BufferWidth - 1, Console.BufferHeight - 1);
 ```
 ### output
-![alt text](https://i.imgur.com/IXDKfE2.png)
+![alt text](https://i.imgur.com/SMPZg3s.png)
 
 
 ## quick Experemental Documentation of TUI  
