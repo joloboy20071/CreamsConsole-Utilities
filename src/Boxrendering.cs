@@ -1,13 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static CreamsConsole_utils.Boxrendering;
 using static CreamsConsole_utils.UnicodeROM;
-
 namespace CreamsConsole_utils;
+
+public class BoxType(Location location, int width, int height, string? Title)
+{
+    public readonly int StartCollum = location.x;
+    public readonly int StartRow = location.y;
+
+    public readonly int witdh = width;
+    public readonly int height = height;
+
+    public readonly string? title = Title;
+
+    public readonly int WritableHeight = height-3;
+    public readonly int WritableWidth = width-3;
+    public Data? data = null;
+
+
+    public readonly Location writableStart = new Location(location.x+1, location.y+1);
+
+   
+}
+
+public class Data
+{
+    public string? Currntval;
+}
+
+
 public class Location(int x, int y)
 {
     public readonly int x = x;
@@ -16,6 +37,62 @@ public class Location(int x, int y)
 
 public class Boxrendering
 {
+    public static List<BoxType> boxTypes = new List<BoxType>();
+
+
+
+
+    public static void WriteSingleInBox(string messgae  ,BoxType box , int StartAt = 0, Color? color = null)
+    {
+        if (box.WritableWidth > messgae.Length && box.WritableHeight > StartAt) {
+            writeAtPost(messgae, box.writableStart.x, box.writableStart.y + StartAt, color);
+        }
+        if (box.WritableWidth < messgae.Length && box.WritableHeight > StartAt) {
+
+            writeAtPost(messgae[..(Int32)box.WritableWidth], box.writableStart.x, box.writableStart.y + StartAt, color);
+
+
+        }
+
+
+    }
+    public static void WriteLineInBox(string messgae, BoxType box, int StartAt = 0, Color? color = null)
+    {
+        string[] lines = messgae.Split('\n');
+
+
+        {
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (box.WritableWidth > lines[i].Length && box.WritableHeight > StartAt+i)
+                {
+                    writeAtPost(lines[i], box.writableStart.x, box.writableStart.y + StartAt+i, color);
+                }
+                if (box.WritableWidth < lines[i].Length && box.WritableHeight > StartAt+i)
+                {
+
+                    writeAtPost(lines[i][..(Int32)box.WritableWidth], box.writableStart.x, box.writableStart.y + StartAt+i, color);
+
+
+                }
+
+
+            }
+        }
+    }
+
+    public static void ClearBox(BoxType box)
+    {
+        var org = Console.GetCursorPosition();
+        var line = "";
+        for (int i = 0; i < box.WritableWidth; i++) { line += " "; }
+        for (int i = 0; i < box.WritableHeight; i++) { writeAtPost(line, box.writableStart.x, box.writableStart.y + i); };
+        Console.SetCursorPosition(org.Left,org.Top);
+
+
+
+    }
+
     public static void writeAtPost(string message, int x, int y, Color? color = null)
     {
         if (color == null) { color = ColorText.ConsoleColorToRGB(ConsoleColor.White); };
@@ -44,21 +121,20 @@ public class Boxrendering
 
 
 
-    public static void RenderBoxAtplace(int witdh, int height, Location location, string? title=null)
+    public static BoxType RenderBoxAtplace(int witdh, int height, Location location, string? title=null, Color? colorFrame = null, Color? colorTitle = null)
     {
 
-        writeAtPost(returnLine(witdh, true), location.x, location.y);
-        for (int i = 0; i < height - 2; i++) { writeAtPost("┃", location.x, location.y + 1 + i); writeAtPost("┃", location.x + witdh - 1, location.y + 1 + i); }
-        writeAtPost(returnLine(witdh, false), location.x, Console.CursorTop);
+        writeAtPost(returnLine(witdh, true), location.x, location.y,colorFrame);
+        for (int i = 0; i < height - 2; i++) { writeAtPost("┃", location.x, location.y + 1 + i, colorFrame); writeAtPost("┃", location.x + witdh - 1, location.y + 1 + i, colorFrame); }
+        writeAtPost(returnLine(witdh, false), location.x, Console.CursorTop, colorFrame);
       
 
         if (title != null) {
 
             Console.SetCursorPosition(location.x, location.y);
-            string backspace = string.Empty;
-            for (int i = 0; i < title.Length; i++) { backspace += "\b"; }
-            writeAtPost(backspace,location.x+3,location.y);
-            writeAtPost(title, location.x + 3, location.y);
+    
+          
+            writeAtPost(title, location.x + 3, location.y,colorTitle);
         
         }
 
@@ -67,6 +143,9 @@ public class Boxrendering
 
         
         Console.SetCursorPosition(Console.BufferWidth-1, Console.BufferHeight-1);
+        var box = new BoxType(location, witdh, height, title);
+        boxTypes.Add(box);
+        return box;
     }
 
 
