@@ -9,6 +9,9 @@ Github Source code: https://github.com/joloboy20071/CreamsConsole-Utilities
 
 Docs (work in progress): https://docs.creams-productions.nl/projects/creams-console-utilities-package-documentation
 
+##1.3.1 Fixed Bug in Boxrendering not showing Color in box outline
+
+
 ## Projects
 
 A simple Terminal Euro Truck 2 Dashboard project made with Creams Console Utilities
@@ -30,21 +33,25 @@ int row = (Console.BufferHeight / 3);
 
 var box1 = Boxrendering.RenderBoxAtplace(collum * 3, (row * 2)+1, new Location((0 * collum), 0), "Box 1");
 var box21 = Boxrendering.RenderBoxAtplace(collum * 1, (row * 1) + 1, new Location((3*collum),0), "BOX 2.1");
-var box22=  Boxrendering.RenderBoxAtplace((collum * 1), (row * 1)+1 , new Location((3 * collum), (row * 1)), "BOX 2.2");
+var box22=  Boxrendering.RenderBoxAtplace((collum * 1), (row * 1)+1 , new Location((3 * collum), (row * 1)), "BOX 2.2", ColorText.HexToRGB(ColorText.allColors["Blue"]));
 var box3 = Boxrendering.RenderBoxAtplace(collum * 5, (row * 1) + 1, new Location(0, (row*2)),"BOX 3");
-
 
 
 foreach (var box in Boxrendering.boxTypes) {
     Boxrendering.WriteLineInBox(FiggleFonts.Standard.Render($"{box.WritableHeight} X {box.WritableWidth}"), box, 0,0,false, ColorText.HexToRGB(ColorText.allColors["Gray"]));
-    string area = $"   Writable box area: {box.WritableHeight} X {box.WritableWidth}";
+}
+bool Active =true;
+while (Active)
+{
+    Console.SetCursorPosition(Console.BufferWidth - 1, Console.BufferHeight - 1);
+    var key = Console.ReadKey();
+    if ( key.Key == ConsoleKey.Escape) { Active = false; }
 }
 
-Console.ReadKey();
-Console.SetCursorPosition(Console.BufferWidth - 1, Console.BufferHeight - 1);
+
 ```
 ### output
-![alt text](https://i.imgur.com/SMPZg3s.png)
+![alt text](https://i.imgur.com/8vsvNXA.png)
 
 
 ## quick Experemental Documentation of TUI  

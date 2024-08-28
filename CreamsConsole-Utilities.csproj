@@ -9,7 +9,7 @@
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	<RepositoryUrl>https://github.com/joloboy20071/CreamsConsole-Utilities</RepositoryUrl>
-	<Description>A Console Utilities library inspired by spectre console focused on customization and good looking console applications
+	<Description>A Console Utilities library inspired by spectre console focused on customization and good looking console applications and TUI's 
 </Description>
 	<Copyright>Creams-productions</Copyright>
 	<PackageProjectUrl>https://github.com/joloboy20071/CreamsConsole-Utilities/tree/master</PackageProjectUrl>
@@ -19,10 +19,9 @@
 	<IncludeSymbols>True</IncludeSymbols>
 	<AssemblyVersion>1.0.0.1</AssemblyVersion>
 	<FileVersion>1.0.0.1</FileVersion>
-	<PackageReleaseNotes>added support Basic Support for Making TUI aplications 
-</PackageReleaseNotes>
+	<PackageReleaseNotes>1.3.1 Fixed Bug in Boxrendering not showing Color in box outline</PackageReleaseNotes>
 	<PackAsTool>False</PackAsTool>
-	<Version>1.3</Version>
+	<Version>1.3.1</Version>
 	<PackageIcon>black_creams.png</PackageIcon>
 	<PackageTags>Console App;Console Styling;Console Utilities;Utilities;Creams Productions;</PackageTags>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>

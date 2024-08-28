@@ -185,7 +185,9 @@ public class Boxrendering
 
     public static BoxType RenderBoxAtplace(int witdh, int height, Location location, string? title=null, Color? colorFrame = null, Color? colorTitle = null)
     {
-        if (!colorTitle.HasValue) { colorTitle = ColorText.HexToRGB(ColorText.allColors["White"]);colorFrame = ColorText.HexToRGB(ColorText.allColors["White"]); }
+        if (!colorTitle.HasValue) { colorTitle = ColorText.HexToRGB(ColorText.allColors["White"]); }
+        if (!colorFrame.HasValue) { colorFrame = ColorText.HexToRGB(ColorText.allColors["White"]); }
+
         writeAtPost(returnLine(witdh, true), location.x, location.y,colorFrame.Value);
         for (int i = 0; i < height - 2; i++) { writeAtPost("┃", location.x, location.y + 1 + i, colorFrame.Value); writeAtPost("┃", location.x + witdh - 1, location.y + 1 + i, colorFrame.Value); }
         writeAtPost(returnLine(witdh, false), location.x, Console.CursorTop, colorFrame.Value);
