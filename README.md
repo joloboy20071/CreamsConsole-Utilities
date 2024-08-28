@@ -9,7 +9,7 @@ Github Source code: https://github.com/joloboy20071/CreamsConsole-Utilities
 
 Docs (work in progress): https://docs.creams-productions.nl/projects/creams-console-utilities-package-documentation
 
-##1.3.1 Fixed Bug in Boxrendering not showing Color in box outline
+## 1.3.1 Fixed Bug in Boxrendering not showing Color in box outline
 
 
 ## Projects
