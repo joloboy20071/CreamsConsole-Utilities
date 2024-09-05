@@ -1,13 +1,6 @@
-﻿using System.Diagnostics;
-using System.Net.NetworkInformation;
-using System.Reflection;
+﻿
 using System.Runtime.InteropServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
-using System.Drawing;
+
 
 namespace ConsoleExtender
 {
@@ -97,6 +90,48 @@ namespace CreamsConsole_utils
     {
         
 
+        public static void maximizeTerminal()
+        {
+            [DllImport("kernel32.dll", ExactSpelling = true)]
+            static extern IntPtr GetConsoleWindow();
+
+            [DllImport("user32.dll")]
+            static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+            const int SW_MAXIMIZE = 3;
+
+
+            IntPtr handle = GetConsoleWindow();
+            ShowWindow(handle, SW_MAXIMIZE);
+            
+
+
+
+
+            //Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
+            [DllImport("user32.dll")]
+            static extern IntPtr GetForegroundWindow();
+
+
+            [DllImport("user32.dll")]
+            static extern bool GetWindowRect(IntPtr hWnd, out Rect lpRect);
+            [DllImport("user32.dll")]
+            static extern bool MoveWindow(IntPtr hWnd, int x, int y, int nWidth, int nHeight, bool bRepaint);
+            // Constants for the ShowWindow function
+
+            // Get the handle of the console window
+            IntPtr consoleWindowHandle = GetForegroundWindow();
+            // Maximize the console window
+            ShowWindow(consoleWindowHandle, SW_MAXIMIZE);
+            // Get the screen size
+            Rect screenRect;
+            GetWindowRect(consoleWindowHandle, out screenRect);
+            // Resize and reposition the console window to fill the screen
+            int width = screenRect.Right - screenRect.Left;
+            int height = screenRect.Bottom - screenRect.Top;
+            MoveWindow(consoleWindowHandle, screenRect.Left, screenRect.Top, width, height, true);
+
+         
+        }
 
 
 

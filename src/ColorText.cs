@@ -9,13 +9,7 @@ using System.Text;
 
 namespace CreamsConsole_utils;
 [Serializable]
-public class InvalidStyleOption : Exception
-{
-    public InvalidStyleOption(string message) : base(message) {Console.WriteLine(message); }
 
-
-
-}
 
 public class ColorText
 {
