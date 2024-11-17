@@ -1,6 +1,5 @@
 ﻿
 using System.Drawing;
-using Microsoft.VisualBasic;
 using static CreamsConsole_utils.UnicodeROM;
 namespace CreamsConsole_utils;
 
@@ -177,7 +176,7 @@ public class Boxrendering
 
 
         
-        Console.SetCursorPosition(Console.BufferWidth-1, Console.BufferHeight-1);
+        Console.SetCursorPosition(Console.WindowWidth-1, Console.WindowHeight-1);
         var box = new BoxType(location, witdh, height, title);
         boxTypes.Add(box);
         return box;
