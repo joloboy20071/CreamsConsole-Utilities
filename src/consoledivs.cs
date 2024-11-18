@@ -1,5 +1,8 @@
-﻿using System;
-using System.Net.Http.Headers;
+﻿using CreamsConsole_utils;
+
+using System.Drawing;
+using System.Text;
+
 
 
 namespace CreamsConsole_utils
@@ -41,6 +44,21 @@ namespace CreamsConsole_utils
 
 
         }
+        public static void ConsolewriteMultiline(Conbox box, UCOORD statingPos, string message) {
+            string[] strings = message.Split('\n');
+            if ((strings.Length + statingPos.y) <= box.height)
+            {
+                for (int i = 0; i < strings.Length; i++)
+                {
+                    consolewriteAtpos(box, new UCOORD((int)statingPos.x, (int)statingPos.y + i), strings[i]);
+
+                }
+            }
+        
+        
+        }
+
+
         public static void consolewriteAtpos(Conbox box,UCOORD writingpos, string massage)
         {
             var i = Console.GetCursorPosition();
@@ -50,9 +68,13 @@ namespace CreamsConsole_utils
 
                 if ((massage.Length + writingpos.x) <= box.width) {
                     UCOORD writelocation = GetScreenCoord(box) + writingpos;
-                    
-                    Console.SetCursorPosition((int)writelocation.x-1,(int)writelocation.y-1);
-                    Console.Write(massage);
+                    //if (writelocation.y == 0) { writelocation.y ++;}
+                    //if (writelocation.x == 0) { writelocation.x++; }
+
+
+
+                    Console.SetCursorPosition((int)writelocation.x,(int)writelocation.y);
+                    ColorText.ColorWriteIn(massage);
                     Console.SetCursorPosition(i.Left,i.Top);
                 
                 
@@ -85,6 +107,11 @@ namespace CreamsConsole_utils
     {
         private string name = "";
 
+        public string getname {
+            get { return name; }
+        }
+
+        public void SetNmae(string name) { this.name = name; }
 
         private Boxsize boxsize;
 
@@ -105,7 +132,12 @@ namespace CreamsConsole_utils
 
         }
 
-        public Conbox(Boxsize size, COORD pos, Conbox? parent =null)
+
+
+        public Conbox(Boxsize size, COORD pos, Conbox? parent = null) {new Conbox(size, pos, "", parent); }
+
+
+        public Conbox(Boxsize size, COORD pos, string boxname, Conbox? parent =null)
         {
             if (parent == null) {
                 this.setsize((int)size.height, (int)size.width);
@@ -180,7 +212,7 @@ namespace CreamsConsole_utils
                     this.boxsize = new Boxsize(width, height);
                     return;
                 }
-                if (height > parent.height | width > parent.height)
+                if (height > parent.height | width > parent.width)
                 {
                     throw new InvalidBoxSize($"height or width value exceeds parrent box size of {parent.boxsize.ToString()} with given child size of {(new Boxsize(width, height)).ToString()}\n");
 
@@ -250,4 +282,67 @@ namespace CreamsConsole_utils
 
 
     }
+}
+public class BoxOutline
+{
+
+
+    private static string[] GetBoxStringArray(Conbox box) {
+        
+        List<string> templist = new List<string>();
+        if (box.height < 3 | box.width < 3) {
+            throw new InvalidBoxSize($"box outline that was givin ({box.width},{box.height}) when both need a minimum of 3");
+            
+        }
+
+
+        string linefromWidth = "";
+        for (int i = 0; i < box.width-2; i++) { linefromWidth += UnicodeROM.DefaultBoxUnicodeROM.Line; }
+
+
+        
+        templist.Add($"{UnicodeROM.DefaultBoxUnicodeROM.leftup}{linefromWidth}{UnicodeROM.DefaultBoxUnicodeROM.rightup}");
+        templist.Add($"{UnicodeROM.DefaultBoxUnicodeROM.leftdown}{linefromWidth}{UnicodeROM.DefaultBoxUnicodeROM.righdown}");
+        templist.Add(UnicodeROM.DefaultBoxUnicodeROM.streight);
+       
+        return templist.ToArray();
+    }
+
+    private static UCOORD[] getUcoords(Conbox box) {
+        List<UCOORD> coordlist = new List<UCOORD>();
+        
+
+        for (int i = 1; i < box.height - 1; i++) {
+            coordlist.Add(new UCOORD(0, i));
+            coordlist.Add(new UCOORD(box.width-1, i));
+ 
+        
+        }
+        return coordlist.ToArray();           
+    
+    }
+
+
+
+    public static Conbox createBoxOutline(Conbox box,Color? BoxColor =null) { 
+        var strings = GetBoxStringArray(box);
+        UCOORD[] uCOORDs = getUcoords(box);
+        conboxFunc.consolewriteAtpos(box, new UCOORD(0, 0), strings[0]);
+        conboxFunc.consolewriteAtpos(box, new UCOORD(0, box.height-1), strings[1]);
+        for (int i = 0; i < uCOORDs.Length; i++) {
+            conboxFunc.consolewriteAtpos(box, uCOORDs[i], strings[2]);
+        
+        }
+        return new Conbox(new Boxsize(box.width - 2, box.height - 2), new COORD(1, 1),box, $"box in {box.getname}");
+
+    }
+
+
+
+
+
+
+
+
+
 }
