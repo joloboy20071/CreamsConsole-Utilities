@@ -134,7 +134,7 @@ namespace CreamsConsole_utils
 
 
 
-        public Conbox(Boxsize size, COORD pos, Conbox? parent = null) {new Conbox(size, pos, "", parent); }
+       // public Conbox(Boxsize size, COORD pos, Conbox? parent = null) {new Conbox(size, pos, "", parent); }
 
 
         public Conbox(Boxsize size, COORD pos, string boxname, Conbox? parent =null)
@@ -207,7 +207,7 @@ namespace CreamsConsole_utils
         {
             if (parent != null)
             {
-                if (height<= parent.height & width <= parent.height)
+                if (height<= parent.height & width <= parent.width)
                 {
                     this.boxsize = new Boxsize(width, height);
                     return;
@@ -333,7 +333,7 @@ public class BoxOutline
             conboxFunc.consolewriteAtpos(box, uCOORDs[i], strings[2]);
         
         }
-        return new Conbox(new Boxsize(box.width - 2, box.height - 2), new COORD(1, 1),box, $"box in {box.getname}");
+        return new Conbox(new Boxsize(box.width - 2, box.height - 2), new COORD(1, 1), $"box in {box.getname}", box);
 
     }
 
