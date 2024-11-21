@@ -64,6 +64,13 @@ namespace CreamsConsole_utils
         
         }
 
+        public static int GetMiddle(int width, string center)
+        {
+            return (int)((width / 2) - (center.Length / 2));
+
+        }
+
+
 
         public static void consolewriteAtpos(Conbox box,UCOORD writingpos, string massage,WritingStyle? style = null)
         {
@@ -74,7 +81,9 @@ namespace CreamsConsole_utils
             BoxRectUCOORD boxRectUCOORD = box.GetBoxRectuCoord();
             if (writingpos < boxRectUCOORD.bottomright) {
 
-                if ((massage.Length + writingpos.x) <= box.width) {
+                if ((massage.Length + writingpos.x) <= box.width)
+                {
+                
                     UCOORD writelocation = GetScreenCoord(box) + writingpos;
                     //if (writelocation.y == 0) { writelocation.y ++;}
                     //if (writelocation.x == 0) { writelocation.x++; }
@@ -101,7 +110,14 @@ namespace CreamsConsole_utils
 
 
         }
+        public static void ClearBox(Conbox box)
+        {
+            var size = box.getboxsize;
+            string emptyspace = utilFunctions.stringgenerator(" ",(int)size.width);
+            string row = utilFunctions.stringgenerator($"{emptyspace}\n", (int)size.height);
+            ConsolewriteMultiline(box, new UCOORD(0, 0), row);
 
+        }
 
         
 

@@ -10,15 +10,17 @@ namespace CreamsConsole_utils
     //│	████████████████████████████ |
     //│	████████████████████████████ |
     //│	████████████████████████████ |
-    //└━	        100             --
+    //└━	        100%            --
     //              
 
 
-    public class valuebar
-    {
+ 
         public class ValueBarstyle
         {
             public bool showBarValue = true;
+            public bool showBarName = true;    
+
+
             public bool showleftBracet = true;
             public bool showrightBracet = true;
 
@@ -31,9 +33,9 @@ namespace CreamsConsole_utils
 
 
 
-        public class BarConfig
+        public class valueBar
         {
-            public string boxName = "";
+            public string BarName = "";
 
             private int offsetbracketValue = 4;
 
@@ -158,16 +160,74 @@ namespace CreamsConsole_utils
             public char barChar = '\u2588';
 
 
-            public void DisplayCalueBar(int value) {
-                if (!isActive) { this.progressBox = new Conbox(new Boxsize(Barheight + 2, Barlength + 4), startpos, $"{boxName}'s box", parentBox); }
+            public void DisplayValueBar(int value) {
+                if (!isActive) { this.progressBox = new Conbox(new Boxsize(Barlength + 4,Barheight + 2 ), startpos, $"{BarName}'s box", parentBox); }
+
+            conboxFunc.ClearBox(this.progressBox);
+            if (style.showleftBracet | style.showrightBracet)
+            {
+                string straightline = utilFunctions.stringgenerator($" {UnicodeROM.DefaultBoxUnicodeROM.streight}\n", Barheight);
+
+                if (style.showleftBracet)
+                {
+                    string topleft = $"{UnicodeROM.DefaultBoxUnicodeROM.leftup}{UnicodeROM.DefaultBoxUnicodeROM.Line}\n" + straightline.Replace(" ", "");
+                    string bottomleft = $"{UnicodeROM.DefaultBoxUnicodeROM.leftdown}{UnicodeROM.DefaultBoxUnicodeROM.Line}";
+                    string finalL = topleft + bottomleft;
+
+                    conboxFunc.ConsolewriteMultiline(progressBox, new UCOORD(0, 0), finalL, style.bracket);
+                }
+
+                if (style.showrightBracet)
+                {
+                    string topright = $"{UnicodeROM.DefaultBoxUnicodeROM.Line}{UnicodeROM.DefaultBoxUnicodeROM.rightup}\n" + straightline;
+                    string bottomright = $"{UnicodeROM.DefaultBoxUnicodeROM.Line}{UnicodeROM.DefaultBoxUnicodeROM.righdown}";
+                    string finalR = topright + bottomright;
+                    conboxFunc.ConsolewriteMultiline(progressBox, new UCOORD(this.GetBarlength + 2, 0), finalR, style.bracket);
+
+                }
 
 
-                string straightline = utilFunctions.stringgenerator(UnicodeROM.DefaultBoxUnicodeROM.streight, Barheight + 2);
+            }            
+                int taskperTile = (int)(MaxbarValue/Barlength);
+            int amountTile = (int)(value / taskperTile);
 
 
-            
+                string block = utilFunctions.stringgenerator($"█", amountTile);
+                string Lines =utilFunctions.stringgenerator($"{block}\n",Barheight);
+
+
+
+                conboxFunc.ConsolewriteMultiline(progressBox, new UCOORD(2, 1), Lines,style.Bar);
+
+            if (style.showBarValue) { 
+                
+                string valuestring = $"{value}%";
+                var cord =new UCOORD(conboxFunc.GetMiddle(progressBox.width, valuestring),progressBox.height-1);
+                conboxFunc.consolewriteAtpos(progressBox, cord, valuestring, style.Text);
             
             }
+            if (style.showBarName) {
+                var cord = new UCOORD(conboxFunc.GetMiddle(progressBox.width, BarName), 0);
+                conboxFunc.consolewriteAtpos(progressBox, cord, this.BarName, style.Text);
+
+            }
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+            
+            
+            
 
 
 
@@ -185,5 +245,3 @@ namespace CreamsConsole_utils
 
     }
 
-
-}
