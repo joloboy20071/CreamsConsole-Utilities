@@ -1,0 +1,71 @@
+[33m543454a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mveryExperimental[m[33m, [m[1;31morigin/veryExperimental[m[33m)[m HEAD@{0}: rebase (finish): returning to refs/heads/veryExperimental
+[33m543454a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mveryExperimental[m[33m, [m[1;31morigin/veryExperimental[m[33m)[m HEAD@{1}: pull --progress --no-edit --no-stat --recurse-submodules=no origin (start): checkout 543454a824b482f35300e4592de05c8280882d55
+[33m8782c9b[m HEAD@{2}: commit: f
+[33m137b2dd[m HEAD@{3}: commit: veryexperimental
+[33m40d05df[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{4}: checkout: moving from master to veryExperimental
+[33m40d05df[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{5}: checkout: moving from Testing to master
+[33mc2f1da8[m[33m ([m[1;31morigin/Testing[m[33m, [m[1;32mTesting[m[33m)[m HEAD@{6}: checkout: moving from master to Testing
+[33m40d05df[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{7}: reset: moving to HEAD
+[33m40d05df[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{8}: commit: minor experemental changes
+[33mbe697ab[m HEAD@{9}: commit: edited README
+[33ma09b44e[m HEAD@{10}: commit: 1.3.1 Fixed Bug in Boxrendering not showing Color in box outline
+[33ma839887[m HEAD@{11}: commit: t
+[33md4b9629[m HEAD@{12}: commit: Edited Demo code README
+[33m3690134[m[33m ([m[1;31morigin/Experemental[m[33m, [m[1;32mExperemental[m[33m)[m HEAD@{13}: merge Experemental: Fast-forward
+[33md7e56c7[m HEAD@{14}: checkout: moving from Experemental to master
+[33m3690134[m[33m ([m[1;31morigin/Experemental[m[33m, [m[1;32mExperemental[m[33m)[m HEAD@{15}: commit: Eddited README
+[33m6425a04[m HEAD@{16}: commit: more suport for boxrender engine
+[33maa7f23b[m HEAD@{17}: commit: al
+[33md7e56c7[m HEAD@{18}: checkout: moving from master to Experemental
+[33md7e56c7[m HEAD@{19}: reset: moving to HEAD
+[33md7e56c7[m HEAD@{20}: merge Experemental: Fast-forward
+[33m09290eb[m HEAD@{21}: checkout: moving from Experemental to master
+[33md7e56c7[m HEAD@{22}: checkout: moving from master to Experemental
+[33m09290eb[m HEAD@{23}: checkout: moving from Experemental to master
+[33md7e56c7[m HEAD@{24}: commit: added suport for rendering boxes to a terminal
+[33m09290eb[m HEAD@{25}: checkout: moving from master to Experemental
+[33m09290eb[m HEAD@{26}: commit: fixed multi selection menu styling
+[33m4d536e2[m HEAD@{27}: commit: Added A var to both selection menus config to configure \n spacing
+[33m9d57303[m HEAD@{28}: commit: Fixed big text rendering isue
+[33m6f7fa6f[m HEAD@{29}: commit: Updated README
+[33mc2a5e2e[m HEAD@{30}: commit: Added inline styling and suport for custom console colors
+[33m2f69f82[m HEAD@{31}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Merge made by the 'ort' strategy.
+[33mec0753a[m HEAD@{32}: commit: Added asni support
+[33m2306095[m[33m ([m[1;33mtag: [m[1;33mbuild[m[33m)[m HEAD@{33}: commit: 1.1.0 Build
+[33ma8e815f[m HEAD@{34}: commit: s
+[33m9e51862[m HEAD@{35}: commit: edit README
+[33m3e3c49e[m HEAD@{36}: commit: Added ColorText into Menus and fixed minor bugs
+[33mb24cafd[m HEAD@{37}: commit: minor fixes
+[33m616c070[m HEAD@{38}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33ma6f2819[m HEAD@{39}: commit: added inline console commands
+[33m0068784[m HEAD@{40}: checkout: moving from Testing to master
+[33mc2f1da8[m[33m ([m[1;31morigin/Testing[m[33m, [m[1;32mTesting[m[33m)[m HEAD@{41}: commit: add output picture
+[33m0068784[m HEAD@{42}: checkout: moving from master to Testing
+[33m0068784[m HEAD@{43}: commit: added src and moved files
+[33me02ccb4[m HEAD@{44}: commit: added Colorwrite Inline
+[33m3e5b8e4[m HEAD@{45}: commit: fixed minor isues
+[33m9990148[m HEAD@{46}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Merge made by the 'ort' strategy.
+[33m0c24eab[m HEAD@{47}: commit: added delete
+[33mf3d3d64[m HEAD@{48}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Merge made by the 'ort' strategy.
+[33ma05b78b[m HEAD@{49}: commit: nuget test
+[33m4008dac[m HEAD@{50}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Merge made by the 'ort' strategy.
+[33mbbd3ea1[m HEAD@{51}: commit: fixed bug in clearbetween lines function deleteing evry thing in console
+[33m6efef2d[m HEAD@{52}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Merge made by the 'ort' strategy.
+[33mc55c6e1[m HEAD@{53}: commit: s
+[33mfaf08df[m HEAD@{54}: commit: s
+[33mb24a4c5[m HEAD@{55}: checkout: moving from master to master
+[33mb24a4c5[m HEAD@{56}: checkout: moving from master to master
+[33mb24a4c5[m HEAD@{57}: commit: add pictures
+[33m2c38416[m HEAD@{58}: checkout: moving from master to master
+[33m2c38416[m HEAD@{59}: reset: moving to HEAD
+[33m2c38416[m HEAD@{60}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33m3ba405a[m HEAD@{61}: checkout: moving from master to master
+[33m3ba405a[m HEAD@{62}: checkout: moving from master to master
+[33m3ba405a[m HEAD@{63}: checkout: moving from master to master
+[33m3ba405a[m HEAD@{64}: commit (merge): merge local into remote
+[33m555fe1a[m HEAD@{65}: checkout: moving from master to master
+[33m555fe1a[m HEAD@{66}: checkout: moving from master to master
+[33m555fe1a[m HEAD@{67}: commit: Updated license and Cproj Propertys
+[33m6f01c6b[m HEAD@{68}: pull --progress --no-edit --no-stat --recurse-submodules=no origin: Fast-forward
+[33md5a1524[m HEAD@{69}: commit: Add project files.
+[33mc2a9dcb[m HEAD@{70}: commit (initial): Add .gitattributes, .gitignore, README.md, and LICENSE.txt.

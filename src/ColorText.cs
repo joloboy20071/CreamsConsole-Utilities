@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 
@@ -287,6 +289,187 @@ public class ColorText
 
 
 
+
+
+
+}
+
+
+
+
+public class WritingStyle
+{
+
+    public static Dictionary<string, string> consolecolor = new Dictionary<string, string>() {
+
+        { "Black","#000000"},
+        { "Blue","#416fe7"},
+        { "Cyan","#00FFFF"},
+        { "DarkBlue","#00008B"},
+        { "DarkCyan","#008B8B"},
+        { "DarkGray","#A9A9A9"},
+        { "DarkGreen","#29b920"},
+        { "DarkMagenta","#8B008B"},
+        { "DarkRed","#8B0000"},
+        { "DarkYellow","#d7c32a"},
+        { "Gray","#a5a5a5"},
+        { "Green","#008000"},
+        { "Magenta","#FF00FF"},
+        { "Red","#FF0000"},
+        { "White","#FFFFFF"},
+        { "Yellow","#FFFF00" }
+    };
+
+
+    public bool Bold = false;
+    public bool Italic = false;
+    public bool Underline = false;
+    public bool Strike = false;
+    public bool Invert = false;
+
+    private Color textColor = Color.White;
+
+    private Color BackgroundColor = Color.Black;
+
+    public Color GetTextcolor
+    {
+        get {
+            return textColor;
+        }
+
+    }
+
+    public Color GetBackgroundColor
+    {
+        get
+        {
+            return BackgroundColor;
+        }
+
+    }
+
+
+    
+
+
+    public void SetColor(Color color)
+    {
+        this.textColor = color;
+    }
+
+    public void SetBackground(Color color)
+    {
+        this.BackgroundColor = color;
+
+    }
+
+    public void SetColor(string HexString)
+    {
+        if ((HexString.StartsWith("#") && HexString.Length == 7) | HexString.Length == 6)
+        {
+            this.textColor = ColorTranslator.FromHtml(HexString);
+        }
+
+
+    }
+    public void SetBackground(string HexString) {
+        if ((HexString.StartsWith("#") && HexString.Length == 7) | HexString.Length == 6)
+        {
+            this.textColor = ColorTranslator.FromHtml(HexString);
+        }
+    }
+
+
+    public void SetColor(ConsoleColor color)
+    {
+        if (consolecolor.ContainsKey(color.ToString()))
+        {
+            this.textColor = ColorTranslator.FromHtml(consolecolor[color.ToString()]);
+        }
+    }
+
+    public void SetBackground(ConsoleColor color)
+    {
+        if (consolecolor.ContainsKey(color.ToString()))
+        {
+
+            this.BackgroundColor = ColorTranslator.FromHtml(consolecolor[color.ToString()]);
+        }
+
+
+    }
+
+    public WritingStyle()
+    {
+    
+    }
+
+    public WritingStyle(Color TextColor)
+    {
+        SetColor(TextColor);
+    }
+
+    public WritingStyle(Color TextColor, Color Background)
+    {
+        SetColor(TextColor);
+        SetBackground(Background);  
+        
+    }
+
+
+
+
+
+
+
+    public string ReturnStyleString()
+    {
+        List<string> list = new List<string>() { "1;", "3;", "4;", "9;", "7;"};
+        List<bool> options = new List<bool>() { Bold, Italic, Underline, Strike, Invert };
+
+        string styleString = ";";
+        for (int i = 0; i < options.Count; i++)
+        {
+            if (options[i])
+            {
+                styleString += list[i];
+            }
+        }
+        return styleString.Remove(styleString.Length - 1);
+
+
+    }
+
+
+}
+
+
+public static class ConsoleOut
+{
+    public static readonly WritingStyle Defaultstyle = new WritingStyle();
+
+
+
+    public static void ConsoleWriteStyle(string message, WritingStyle style)
+    {
+        var color = style.GetTextcolor;
+        var backGroundColor = style.GetBackgroundColor;
+        Console.Write($"\x1b[38;2;{color.R};{color.G};{color.B};48;2;{backGroundColor.R};{backGroundColor.G};{backGroundColor.B}m{message}\x1b[0m");
+
+
+    }
+
+
+    public static void writeRGB(string text, Color color, string modifireString = null)
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+        Console.Write($"\x1b[38;2;{color.R};{color.G};{color.B}{modifireString}m{text}\x1b[0m");
+    }
+    public static void writeRGB(string text, Color color)
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+        Console.Write($"\x1b[38;2;{color.R};{color.G};{color.B}m{text}\x1b[0m");
+    }
 
 
 

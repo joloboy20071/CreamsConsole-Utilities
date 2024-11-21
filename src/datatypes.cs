@@ -76,7 +76,18 @@ public struct UCOORD
     }
 
 
+    public static implicit operator UCOORD(COORD a)
+    {
 
+        return new UCOORD(a.x, a.y);
+
+    }
+
+
+    public static implicit operator COORD(UCOORD a)
+    {
+        return new COORD(a.x, a.y);
+    }
 
 
 }

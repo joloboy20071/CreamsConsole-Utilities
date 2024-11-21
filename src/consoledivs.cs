@@ -9,7 +9,13 @@ namespace CreamsConsole_utils
 {
     public class conboxFunc
     {
-        
+        public static COORD ZeroZero = new COORD(0, 0);
+
+
+        public static Conbox MainBody = new Conbox(new Boxsize(Console.WindowWidth, Console.WindowHeight), ZeroZero, "mainbody");
+
+
+
 
 
 
@@ -44,13 +50,13 @@ namespace CreamsConsole_utils
 
 
         }
-        public static void ConsolewriteMultiline(Conbox box, UCOORD statingPos, string message) {
+        public static void ConsolewriteMultiline(Conbox box, UCOORD statingPos, string message,WritingStyle? style = null) {
             string[] strings = message.Split('\n');
             if ((strings.Length + statingPos.y) <= box.height)
             {
                 for (int i = 0; i < strings.Length; i++)
                 {
-                    consolewriteAtpos(box, new UCOORD((int)statingPos.x, (int)statingPos.y + i), strings[i]);
+                    consolewriteAtpos(box, new UCOORD((int)statingPos.x, (int)statingPos.y + i), strings[i], style);
 
                 }
             }
@@ -59,8 +65,10 @@ namespace CreamsConsole_utils
         }
 
 
-        public static void consolewriteAtpos(Conbox box,UCOORD writingpos, string massage)
+        public static void consolewriteAtpos(Conbox box,UCOORD writingpos, string massage,WritingStyle? style = null)
         {
+            if (style == null) { style = ConsoleOut.Defaultstyle; }
+
             var i = Console.GetCursorPosition();
 
             BoxRectUCOORD boxRectUCOORD = box.GetBoxRectuCoord();
@@ -74,7 +82,7 @@ namespace CreamsConsole_utils
 
 
                     Console.SetCursorPosition((int)writelocation.x,(int)writelocation.y);
-                    ColorText.ColorWriteIn(massage);
+                    ConsoleOut.ConsoleWriteStyle(massage, style);
                     Console.SetCursorPosition(i.Left,i.Top);
                 
                 
@@ -324,13 +332,13 @@ public class BoxOutline
 
 
 
-    public static Conbox createBoxOutline(Conbox box,Color? BoxColor =null) { 
+    public static Conbox createBoxOutline(Conbox box,WritingStyle? style=null) { 
         var strings = GetBoxStringArray(box);
         UCOORD[] uCOORDs = getUcoords(box);
-        conboxFunc.consolewriteAtpos(box, new UCOORD(0, 0), strings[0]);
-        conboxFunc.consolewriteAtpos(box, new UCOORD(0, box.height-1), strings[1]);
+        conboxFunc.consolewriteAtpos(box, new UCOORD(0, 0), strings[0], style);
+        conboxFunc.consolewriteAtpos(box, new UCOORD(0, box.height-1), strings[1],style);
         for (int i = 0; i < uCOORDs.Length; i++) {
-            conboxFunc.consolewriteAtpos(box, uCOORDs[i], strings[2]);
+            conboxFunc.consolewriteAtpos(box, uCOORDs[i], strings[2],style);
         
         }
         return new Conbox(new Boxsize(box.width - 2, box.height - 2), new COORD(1, 1), $"box in {box.getname}", box);

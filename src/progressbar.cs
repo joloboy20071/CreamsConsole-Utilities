@@ -1,12 +1,15 @@
-﻿namespace CreamsConsole_utils
+﻿using System.Drawing;
+using System.Dynamic;
+
+namespace CreamsConsole_utils
 {
 
 
 
-    public class ProgressBars
+    public class lagacyProgressBars
     {
 
-        public class ProgresBarConfig
+        public class lagacyProgresBarConfig
         {
             public string barchar = "\u2501";
             public string TaskName = "placeholder";
@@ -32,13 +35,13 @@
             return TilesDone;
         }
 
-        public int startBar(ProgresBarConfig config)
+        public int startBar(lagacyProgresBarConfig config)
         {
             Console.CursorVisible = false;
             var Newcharcount = PrintProgress(config.totalTasks, 0, config);
             return Newcharcount;
         }
-        public int UpdateBar(int currentTask, ProgresBarConfig config, int oldcharcount)
+        public int UpdateBar(int currentTask, lagacyProgresBarConfig config, int oldcharcount)
         {
             var remove = "\b";
             for (var i = 0; i < oldcharcount; i++)
@@ -54,7 +57,7 @@
 
 
 
-        private int PrintProgress(int totalTasks, int currentTask, ProgresBarConfig config)
+        private int PrintProgress(int totalTasks, int currentTask, lagacyProgresBarConfig config)
         {
             var charcount = 0;
 
@@ -101,5 +104,169 @@
 
 
     }
+
+    public class progressBar
+    {
+        private bool Iscompleted = false;
+        private bool isActive = false;
+
+        public string barchar = "\u2501";
+
+        public bool showTaskName = true;
+        public string TaskName = "placeholder";
+
+        public WritingStyle CompletedColor = new WritingStyle(Color.Green);
+        public WritingStyle incompleteColor = new WritingStyle(Color.Gray);
+        public WritingStyle StepColor = new WritingStyle(Color.AliceBlue);
+        public WritingStyle taskStatusColor = new WritingStyle(Color.DarkCyan);
+
+        public Conbox parentBox = conboxFunc.MainBody;
+        private Conbox ProgressBox;
+
+
+        public UCOORD startplace = new UCOORD(0, 0);
+
+        private int TotalTasks = 0;
+
+        private int barlength = 50;
+
+
+        public bool Iscomplete{
+            get
+            {
+                return Iscompleted;
+            }
+        }
+
+        public progressBar(int totalTasks)
+        {
+            this.TotalTasks = totalTasks;
+        }
+
+        public int taskAmount
+        {
+
+            get
+            {
+                return TotalTasks;
+            }
+        }
+
+        public Conbox GetprogressBox
+        {
+            get
+            {
+                return ProgressBox;
+            }
+
+        }
+
+
+        public void setBarLenght(int length){
+            if (GetBarWidth($"[{TotalTasks}/{TotalTasks}]",length) < (parentBox.width - startplace.x)) { barlength = length;return; }
+            return;
+        }
+
+        public int getBarLenght
+        {
+            get
+            {
+                return barlength;
+            }
+        }
+
+
+        private (int,int,string) GetProgressData(int TaskDone)
+        {
+            int TaskperTile = (int)(TotalTasks / barlength);
+            int CompletedTiles = (int)(TaskDone / TaskperTile);
+            int incompleteTiles = this.barlength - CompletedTiles;
+
+            return (CompletedTiles,incompleteTiles,$"[{TaskDone}/{TotalTasks}]");
+
+
+
+        }
+        private int GetBarWidth(string tasks,int newleng=0)
+        {
+            int Barwidth = 0;
+
+            if (showTaskName) { Barwidth += TaskName.Length + 1; }
+            if (newleng == 0)
+            {
+                Barwidth += tasks.Length + barlength + 1;
+            }
+            if (newleng != 0) { barlength += tasks.Length + newleng + 1; }
+            return Barwidth;
+
+        }
+
+
+
+        public void DisplayProgress(int taskdone =0)
+        {
+            int cursorpos = 0;
+
+
+            var data = GetProgressData(taskdone);
+
+            if (!isActive) { ProgressBox = new Conbox(new Boxsize(GetBarWidth($"[{TotalTasks}/{TotalTasks}]"), 1), startplace, $"{TaskName}'s progressbar", parentBox); }
+
+            string completeString = utilFunctions.stringgenerator(this.barchar, data.Item1);
+            string incompleteString = utilFunctions.stringgenerator(this.barchar, data.Item2);
+
+            if (showTaskName) { conboxFunc.consolewriteAtpos(ProgressBox, new UCOORD(0, 0), TaskName); cursorpos += TaskName.Length + 1; }
+
+
+            if (completeString.Length < barlength)
+            {
+                conboxFunc.consolewriteAtpos(ProgressBox, new UCOORD(cursorpos, 0), completeString, this.StepColor); cursorpos += completeString.Length;
+                conboxFunc.consolewriteAtpos(ProgressBox, new UCOORD(cursorpos, 0), incompleteString, this.incompleteColor); cursorpos += incompleteString.Length + 1;
+                conboxFunc.consolewriteAtpos(ProgressBox, new UCOORD(cursorpos, 0), data.Item3, this.taskStatusColor);
+                return;
+            
+            }
+            if (completeString.Length == barlength) {
+                conboxFunc.consolewriteAtpos(ProgressBox, new UCOORD(cursorpos, 0), completeString, this.CompletedColor); cursorpos += completeString.Length+1;
+                conboxFunc.consolewriteAtpos(ProgressBox, new UCOORD(cursorpos, 0), data.Item3, this.taskStatusColor);
+                Iscompleted = true;
+                return;
+
+            }
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
 
