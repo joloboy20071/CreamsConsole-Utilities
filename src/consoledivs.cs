@@ -76,7 +76,7 @@ namespace CreamsConsole_utils
         {
             if (style == null) { style = ConsoleOut.Defaultstyle; }
 
-            var i = Console.GetCursorPosition();
+            //var i = Console.GetCursorPosition();
 
             BoxRectUCOORD boxRectUCOORD = box.GetBoxRectuCoord();
             if (writingpos < boxRectUCOORD.bottomright) {
@@ -92,7 +92,7 @@ namespace CreamsConsole_utils
 
                     Console.SetCursorPosition((int)writelocation.x,(int)writelocation.y);
                     ConsoleOut.ConsoleWriteStyle(massage, style);
-                    Console.SetCursorPosition(i.Left,i.Top);
+                   // Console.SetCursorPosition(i.Left,i.Top);
                 
                 
                 }

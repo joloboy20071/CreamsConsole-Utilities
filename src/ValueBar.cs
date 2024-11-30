@@ -27,7 +27,7 @@ namespace CreamsConsole_utils
 
             public WritingStyle bracket = new WritingStyle(Color.Gray);
             public WritingStyle Bar = new WritingStyle(Color.Green);
-            public WritingStyle Text = new WritingStyle(Color.Blue);
+            public WritingStyle Text = new WritingStyle(Color.Gray);
 
         }
 
@@ -175,6 +175,10 @@ namespace CreamsConsole_utils
                     string finalL = topleft + bottomleft;
 
                     conboxFunc.ConsolewriteMultiline(progressBox, new UCOORD(0, 0), finalL, style.bracket);
+
+                    topleft = string.Empty;
+                    bottomleft = string.Empty;
+                    finalL= string.Empty;
                 }
 
                 if (style.showrightBracet)
@@ -183,7 +187,9 @@ namespace CreamsConsole_utils
                     string bottomright = $"{UnicodeROM.DefaultBoxUnicodeROM.Line}{UnicodeROM.DefaultBoxUnicodeROM.righdown}";
                     string finalR = topright + bottomright;
                     conboxFunc.ConsolewriteMultiline(progressBox, new UCOORD(this.GetBarlength + 2, 0), finalR, style.bracket);
-
+                    topright = string.Empty;
+                    bottomright = string.Empty;
+                    finalR = string.Empty;
                 }
 
 
@@ -202,17 +208,20 @@ namespace CreamsConsole_utils
             if (style.showBarValue) { 
                 
                 string valuestring = $"{value}%";
-                var cord =new UCOORD(conboxFunc.GetMiddle(progressBox.width, valuestring),progressBox.height-1);
+                var cord =new UCOORD(conboxFunc.GetMiddle(progressBox.width-1, valuestring),progressBox.height-1);
                 conboxFunc.consolewriteAtpos(progressBox, cord, valuestring, style.Text);
+                valuestring = string.Empty;
             
             }
             if (style.showBarName) {
                 var cord = new UCOORD(conboxFunc.GetMiddle(progressBox.width, BarName), 0);
                 conboxFunc.consolewriteAtpos(progressBox, cord, this.BarName, style.Text);
+                
 
             }
 
-
+            block = string.Empty;
+            Lines = string.Empty;
 
 
 
