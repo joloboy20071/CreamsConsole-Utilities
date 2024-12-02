@@ -133,6 +133,10 @@ public class Boxrendering
 
     }
 
+    public static void writeAtPost() { }
+
+
+
 
     public static string returnLine(int Witdh, bool IsTop =false ,string? hasTitle = null)
     {
