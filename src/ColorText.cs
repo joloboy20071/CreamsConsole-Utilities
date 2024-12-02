@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using System.Runtime.Intrinsics.X86;
+
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 
 
@@ -12,7 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace CreamsConsole_utils;
 [Serializable]
 
-
+[Obsolete("this class is lagecy so please use writingstyle and conout or writeingstyle and conbox classes instead ")]
 public class ColorText
 {
 

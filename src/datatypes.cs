@@ -148,7 +148,23 @@ public struct UCOORD
         return false;
 
 
+
     }
+
+    public static bool operator ==(UCOORD b, UCOORD c) {
+
+
+        if (b.x == c.x && b.y == c.y) { return true; };
+        return false;
+    }
+    public static bool operator !=(UCOORD b, UCOORD c)
+    {
+
+
+        if (b == c) { return false; };
+        return true;
+    }
+
 
 
     public static implicit operator UCOORD(COORD a)

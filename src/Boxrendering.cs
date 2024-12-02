@@ -5,7 +5,7 @@ namespace CreamsConsole_utils;
 
 
 
-
+[Obsolete("this class is lagecy so please use conbox class instead ")]
 public class Boxrendering
 {
     public static List<BoxType> boxTypes = new List<BoxType>();

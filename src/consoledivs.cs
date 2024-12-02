@@ -55,9 +55,12 @@ namespace CreamsConsole_utils
 
 
         }
-       
 
 
+        private static void setConsoleCursor(UCOORD location) {
+            Console.SetCursorPosition((int)location.x, (int)location.y);
+        
+        }
 
 
 
@@ -81,6 +84,19 @@ namespace CreamsConsole_utils
 
         }
 
+
+        public void BoxInfoWrite(BoxInfo box, UCOORD writingPos, string message, WritingStyle? style = null) {
+            if (style == null) { style = ConsoleOut.Defaultstyle; }
+            if (writingPos < new UCOORD(box.boxsize.width, box.boxsize.height)) {
+                if ((message.Length + writingPos.x) <= box.boxsize.width) {
+                    setConsoleCursor(box.globalpos + box.globalpos + writingPos);
+                    ConsoleOut.ConsoleWriteStyle(message, style);
+                }
+
+
+            }
+        
+        }
 
 
         public static void consolewriteAtpos(Conbox box,UCOORD writingpos, string massage,WritingStyle? style = null)
@@ -156,7 +172,8 @@ namespace CreamsConsole_utils
         private Boxsize boxsize;
 
         private BoxInfo BoxInfo ;
-        public BoxInfo Getinfo {
+
+        public BoxInfo GetBoxinfo {
             get { return BoxInfo; }
         
         }
@@ -168,22 +185,17 @@ namespace CreamsConsole_utils
 
         private Boxsize maxsize = new Boxsize(Console.WindowWidth, Console.WindowHeight);
 
-        private UCOORD Pos = new UCOORD(0, 0);
+        private UCOORD Pos = new UCOORD(99999, 99999);
         
 
         private void Setparent(Conbox parentbox)
         {
-            if (parentbox.width > 0 & parentbox.height > 0) { this.parent = parentbox;  }
+            if (parentbox.width > 0 & parentbox.height > 0) { if (this.parent != null) { BoxInfo.Setvalue(this.Id, conboxFunc.GetScreenCoord(this), boxsize, parentbox.Id, name); } this.parent = parentbox;  }
             else {this.parent = null; throw new InvalidParentBox("givin parent box is invalid"); }
 
 
         }
 
-
-      
-       // internal UCOORD perv = new UCOORD(thwidth,);
-
-       // public Conbox(Boxsize size, COORD pos, Conbox? parent = null) {new Conbox(size, pos, "", parent); }
 
 
         public Conbox(Boxsize size, COORD pos, string boxname, Conbox? parent =null)
@@ -251,6 +263,16 @@ namespace CreamsConsole_utils
 
         }
 
+        private int GetparentId {
+            get { if (hasparent) { return parent.Id; }
+                return -1;
+            }
+        
+        
+        }
+
+
+
         public void setsize(int height, int width)
         {
             if (parent != null)
@@ -283,7 +305,7 @@ namespace CreamsConsole_utils
             }
 
 
-
+            if (!boxsize.Equals(null)) { BoxInfo.Setvalue(this.Id, this.BoxInfo.globalpos,this.boxsize, GetparentId, name); }
 
 
 
@@ -291,6 +313,9 @@ namespace CreamsConsole_utils
 
         public void setPos(int x, int y)
         {
+            if (this.Pos != new UCOORD(99999, 99999)) { this.BoxInfo.Setvalue(this.Id, conboxFunc.GetScreenCoord(this),this.boxsize,this.GetparentId,this.name);  }
+
+
             if (parent != null)
             {
                 if ((x + boxsize.width)<= parent.width & (y + boxsize.height)<= parent.height) { this.Pos = new UCOORD(x, y); }
