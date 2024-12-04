@@ -64,40 +64,13 @@ public struct BoxInfo {
 
 }
 
-
-
-
-public struct ConWritRrequest {
-    
-    private string writablestring;
-    private UCOORD startPos;
-    private WritingStyle style;
-
-
-
-
-
-    public ConWritRrequest(Boxsize Size,string WriteMessage) {
-        
-
-
-
-
-    }
-
-
-
-};
-
-
-
 public struct TermialWriterequest {
     public string message;
     public UCOORD startPos;
     public WritingStyle Style;
-    public Conbox Box;
+    public BoxInfo Box;
 
-    public TermialWriterequest(Conbox box,string Message,UCOORD startpos,WritingStyle style) {
+    public TermialWriterequest(BoxInfo box,string Message,UCOORD startpos,WritingStyle style) {
         this.startPos = startpos;
         this.Style = style;
         this.message = Message;
