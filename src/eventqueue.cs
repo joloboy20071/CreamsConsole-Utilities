@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace CreamsConsole_utils.src
 {
-    public static class eventqueue
+    public class eventqueue
     {
 
     
 
-        private static void WriteThreadFuncs() {
+        private void WriteThreadFuncs() {
                 
+
         
         
         

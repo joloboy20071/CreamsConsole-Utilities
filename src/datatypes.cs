@@ -90,6 +90,28 @@ public struct ConWritRrequest {
 };
 
 
+
+public struct TermialWriterequest {
+    public string message;
+    public UCOORD startPos;
+    public WritingStyle Style;
+    public Conbox Box;
+
+    public TermialWriterequest(Conbox box,string Message,UCOORD startpos,WritingStyle style) {
+        this.startPos = startpos;
+        this.Style = style;
+        this.message = Message;
+        this.Box = box; 
+    
+    
+    }
+
+
+}
+
+
+
+
 public struct UCOORD
 {
     public uint x;

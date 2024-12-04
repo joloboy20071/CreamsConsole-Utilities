@@ -11,6 +11,21 @@ namespace CreamsConsole_utils
     {
         internal static Dictionary<int, Conbox> GetBoxFromId = new Dictionary<int, Conbox>();
 
+        public static int[] GetallIds() {
+            return GetBoxFromId.Keys.ToArray();
+        }
+
+        public static Conbox[] GetallBox() {
+            return GetBoxFromId.Values.ToArray();
+        }
+
+
+        public static Conbox? GetboxfromID(int id) {
+            try { return GetBoxFromId[id]; }
+            catch { return null; }
+        
+        
+        }
 
 
 
