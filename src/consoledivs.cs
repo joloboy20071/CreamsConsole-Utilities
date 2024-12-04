@@ -100,16 +100,25 @@ namespace CreamsConsole_utils
         }
 
 
-        public void BoxInfoWrite(BoxInfo box, UCOORD writingPos, string message, WritingStyle? style = null) {
+        public static void BoxInfoWrite(BoxInfo box, UCOORD writingPos, string message, WritingStyle? style = null)
+        {
             if (style == null) { style = ConsoleOut.Defaultstyle; }
-            if (writingPos < new UCOORD(box.boxsize.width, box.boxsize.height)) {
-                if ((message.Length + writingPos.x) <= box.boxsize.width) {
+            if (writingPos < new UCOORD(box.boxsize.width, box.boxsize.height))
+            {
+                if ((message.Length + writingPos.x) <= box.boxsize.width)
+                {
                     setConsoleCursor(box.globalpos + box.globalpos + writingPos);
                     ConsoleOut.ConsoleWriteStyle(message, style);
                 }
 
 
             }
+
+        }
+
+
+        public static void BoxInfoWrite(TermialWriterequest request) {
+            BoxInfoWrite(request.Box,request.startPos,request.message,request.Style);
         
         }
 

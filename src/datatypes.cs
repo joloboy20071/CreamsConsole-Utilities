@@ -52,7 +52,7 @@ public struct BoxInfo {
         if (_name == null) { _name = string.Empty; }
 
 
-        if (_boxid != null && _boxid != -1)
+        if (_boxid != null && _parentid != -1)
         {
             this.Boxsize = _boxsize;
             this.Globalpos = _Globalpos;
