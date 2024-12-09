@@ -361,5 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/et --hard HEAD@{1}
-/src.zip
+/CreamsConsole-utils.sln
+/.gitignore
+/.gitignore
