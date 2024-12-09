@@ -51,53 +51,81 @@ public class consoleAlloc
     [DllImport("kernel32.dll")]
     public static extern uint GetLastError();
 
+    private static bool consoleinit = false;
+
+    public static bool Consoleinit {
+        get { return consoleinit; }
     
+    }
+
+
+
     public static void setupCreamsConsole()
     {
-        AllocConsole();
-
-        var iStdIn = GetStdHandle(STD_INPUT_HANDLE);
-        var iStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-        if (!GetConsoleMode(iStdIn, out uint inConsoleMode))
+        if (!consoleinit)
         {
-            Console.WriteLine("failed to get input console mode");
-            Console.ReadKey();
+            AllocConsole();
+
+            var iStdIn = GetStdHandle(STD_INPUT_HANDLE);
+            var iStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+            if (!GetConsoleMode(iStdIn, out uint inConsoleMode))
+            {
+                Console.WriteLine("failed to get input console mode");
+                Console.ReadKey();
+                return;
+            }
+            if (!GetConsoleMode(iStdOut, out uint outConsoleMode))
+            {
+                Console.WriteLine("failed to get output console mode");
+                Console.ReadKey();
+                return;
+            }
+
+            inConsoleMode |= ENABLE_VIRTUAL_TERMINAL_INPUT;
+            outConsoleMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING | DISABLE_NEWLINE_AUTO_RETURN;
+
+            if (!SetConsoleMode(iStdIn, inConsoleMode))
+            {
+                Console.WriteLine($"failed to set input console mode, error code: {GetLastError()}");
+                Console.ReadKey();
+                return;
+            }
+            if (!SetConsoleMode(iStdOut, outConsoleMode))
+            {
+                Console.WriteLine($"failed to set output console mode, error code: {GetLastError()}");
+                Console.ReadKey();
+                return;
+            }
+
+
+            Console.BufferHeight = Console.WindowHeight;
+            Console.BufferWidth = Console.WindowWidth;
+
+
+            consoleinit = true;
+
+
+
+
+        }
+    }
+
+
+    public static void ResizeCreamsConsole(Boxsize size ) {
+        ResizeCreamsConsole((int)size.width, (int)size.height);
+    }
+
+
+    public static void ResizeCreamsConsole(int x, int y) {
+        if (Consoleinit) {
+            Console.SetWindowSize(x, y);
+            Console.BufferHeight = Console.WindowHeight;
+            Console.BufferWidth = Console.WindowWidth;
             return;
         }
-        if (!GetConsoleMode(iStdOut, out uint outConsoleMode))
-        {
-            Console.WriteLine("failed to get output console mode");
-            Console.ReadKey();
-            return;
-        }
-
-        inConsoleMode |= ENABLE_VIRTUAL_TERMINAL_INPUT;
-        outConsoleMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING | DISABLE_NEWLINE_AUTO_RETURN;
-
-        if (!SetConsoleMode(iStdIn, inConsoleMode))
-        {
-            Console.WriteLine($"failed to set input console mode, error code: {GetLastError()}");
-            Console.ReadKey();
-            return;
-        }
-        if (!SetConsoleMode(iStdOut, outConsoleMode))
-        {
-            Console.WriteLine($"failed to set output console mode, error code: {GetLastError()}");
-            Console.ReadKey();
-            return;
-        }
-        
-
-        Console.BufferHeight = Console.WindowHeight;
-        Console.BufferWidth = Console.WindowWidth;
-
-
-        
-
-
-
-
+        throw new NoConsoleInit("console was not init make sure this fucntion is called after the setupCreamsConsole(); ");
+    
     }
 
 

@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Drawing;
 namespace CreamsConsole_utils;
+
+
+
+
+
 public class InvalidStyleOption : Exception
 {
     public InvalidStyleOption(string message) : base(message) { ColorText.writeRGB(message,System.Drawing.Color.Red); Console.ReadKey();
@@ -19,7 +25,13 @@ public class InvalidParentBox : Exception
 
 
 
-
+public class NoConsoleInit : Exception {
+    public NoConsoleInit(string message) : base(message) {
+        ColorText.writeRGB(message, Color.Red);
+        Console.ReadKey();
+    
+    }
+}
 
 public class InvalidBoxSize : Exception
 {

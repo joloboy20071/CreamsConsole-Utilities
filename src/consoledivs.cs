@@ -71,7 +71,10 @@ namespace CreamsConsole_utils
 
         }
 
-
+        /// <summary>
+        /// set the console cursor pos based on a Ucoord 
+        /// </summary>
+        /// <param name="location"></param>
         private static void setConsoleCursor(UCOORD location) {
             Console.SetCursorPosition((int)location.x, (int)location.y);
         
@@ -100,14 +103,25 @@ namespace CreamsConsole_utils
         }
 
 
-        public static void BoxInfoWrite(BoxInfo box, UCOORD writingPos, string message, WritingStyle? style = null)
+
+
+
+
+        /// <summary>
+        /// the default console write function with compatabilty with the conbox system
+        /// </summary>
+        /// <param name="Boxinfo"></param>
+        /// <param name="writingPos"></param>
+        /// <param name="message"></param>
+        /// <param name="style"></param>
+        public static void BoxInfoWrite(BoxInfo Boxinfo, UCOORD writingPos, string message, WritingStyle? style = null)
         {
             if (style == null) { style = ConsoleOut.Defaultstyle; }
-            if (writingPos < new UCOORD(box.boxsize.width, box.boxsize.height))
+            if (writingPos < new UCOORD(Boxinfo.boxsize.width, Boxinfo.boxsize.height))
             {
-                if ((message.Length + writingPos.x) <= box.boxsize.width)
+                if ((message.Length + writingPos.x) <= Boxinfo.boxsize.width)
                 {
-                    setConsoleCursor(box.globalpos + box.globalpos + writingPos);
+                    setConsoleCursor(Boxinfo.globalpos + Boxinfo.globalpos + writingPos);
                     ConsoleOut.ConsoleWriteStyle(message, style);
                 }
 
@@ -116,7 +130,10 @@ namespace CreamsConsole_utils
 
         }
 
-
+        /// <summary>
+        /// in functionnality the same as its default variant but should only be used with thread based uis 
+        /// </summary>
+        /// <param name="request"></param>
         public static void BoxInfoWrite(TermialWriterequest request) {
             BoxInfoWrite(request.Box,request.startPos,request.message,request.Style);
         
@@ -127,7 +144,7 @@ namespace CreamsConsole_utils
         {
             if (style == null) { style = ConsoleOut.Defaultstyle; }
 
-            //var i = Console.GetCursorPosition();
+            
 
             BoxRectUCOORD boxRectUCOORD = box.GetBoxRectuCoord();
             if (writingpos < boxRectUCOORD.bottomright) {
@@ -139,7 +156,7 @@ namespace CreamsConsole_utils
             
                     Console.SetCursorPosition((int)writelocation.x,(int)writelocation.y);
                     ConsoleOut.ConsoleWriteStyle(massage, style);
-                   // Console.SetCursorPosition(i.Left,i.Top);
+                   
                 
                 
                 }
@@ -430,7 +447,7 @@ public class BoxOutline
             conboxFunc.consolewriteAtpos(box, uCOORDs[i], strings[2],style);
         
         }
-        return new Conbox(new Boxsize(box.width - 2, box.height - 2), new COORD(1, 1), $"box in {box.getname}", box);
+        return new Conbox(new Boxsize(box.width - 4, box.height - 2), new COORD(2, 1), $"box in {box.getname}", box);
 
     }
 

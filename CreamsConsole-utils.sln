@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreamsConsole-Utilities", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consoledivs", "..\consoledivs\consoledivs.csproj", "{217C7557-E63D-49C2-884B-3CBCF1BD8965}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "boxwrite test", "..\boxwrite test\boxwrite test.csproj", "{9FAD29D8-BCE5-445B-85B7-67121BA9E193}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{217C7557-E63D-49C2-884B-3CBCF1BD8965}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{217C7557-E63D-49C2-884B-3CBCF1BD8965}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{217C7557-E63D-49C2-884B-3CBCF1BD8965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FAD29D8-BCE5-445B-85B7-67121BA9E193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FAD29D8-BCE5-445B-85B7-67121BA9E193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FAD29D8-BCE5-445B-85B7-67121BA9E193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FAD29D8-BCE5-445B-85B7-67121BA9E193}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
