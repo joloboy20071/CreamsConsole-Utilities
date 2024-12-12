@@ -1,5 +1,6 @@
 ﻿
 using System.Runtime.InteropServices;
+using System.Text;
 
 
 namespace CreamsConsole_utils;
@@ -101,8 +102,7 @@ public class consoleAlloc
 
             Console.BufferHeight = Console.WindowHeight;
             Console.BufferWidth = Console.WindowWidth;
-
-
+            Console.OutputEncoding = Encoding.UTF8;
             consoleinit = true;
 
 
