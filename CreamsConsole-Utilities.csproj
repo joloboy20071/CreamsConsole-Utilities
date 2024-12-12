@@ -29,18 +29,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <Compile Remove="pics\**" />
+    <Compile Remove="Properties\**" />
+    <EmbeddedResource Remove="pics\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <None Remove="pics\**" />
+    <None Remove="Properties\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="pics\" />
+    <None Remove="LICENSE.txt" />
+    <None Remove="README.md" />
   </ItemGroup>
 
 </Project>
