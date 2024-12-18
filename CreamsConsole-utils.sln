@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consoledivs", "..\consoledi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "boxwrite test", "..\boxwrite test\boxwrite test.csproj", "{9FAD29D8-BCE5-445B-85B7-67121BA9E193}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PROJECTS", "PROJECTS", "{7DDDF991-314B-42F6-A2FE-F6398FD22A32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{217C7557-E63D-49C2-884B-3CBCF1BD8965} = {7DDDF991-314B-42F6-A2FE-F6398FD22A32}
+		{9FAD29D8-BCE5-445B-85B7-67121BA9E193} = {7DDDF991-314B-42F6-A2FE-F6398FD22A32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC8A0EC-2980-4054-BC12-0BFA217D07AF}

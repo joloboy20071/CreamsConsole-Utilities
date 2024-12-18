@@ -64,20 +64,42 @@ public struct BoxInfo {
 
 }
 
-public struct TermialWriterequest {
+public struct TermialWriterequest
+{
     public string message;
     public UCOORD startPos;
     public WritingStyle Style;
     public BoxInfo Box;
 
-    public TermialWriterequest(BoxInfo box,string Message,UCOORD startpos,WritingStyle style) {
+    public TermialWriterequest(BoxInfo box, string Message, UCOORD startpos, WritingStyle style)
+    {
         this.startPos = startpos;
         this.Style = style;
         this.message = Message;
-        this.Box = box; 
-    
-    
+        this.Box = box;
+
+
     }
+
+    public static bool operator ==(TermialWriterequest a, TermialWriterequest b)
+    {
+        if (a.message == b.message && a.Style == b.Style && a.Box.boxid == b.Box.boxid&& a.startPos == b.startPos) {
+            return true;
+        }
+        return false;
+
+
+
+
+
+    }
+    public static bool operator !=(TermialWriterequest a, TermialWriterequest b) {
+
+        if (a == b) { return false; }
+        return true;
+    }
+
+
 
 
 }

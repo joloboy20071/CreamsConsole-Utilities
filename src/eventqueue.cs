@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Collections.Concurrent;
+using System.Threading;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,16 +9,98 @@ namespace CreamsConsole_utils.src
     public class eventqueue
     {
 
+        public static ConcurrentQueue<TermialWriterequest> Queuecon;
+
+
+
+
+
+        public eventqueue() {
+            Queuecon = new ConcurrentQueue<TermialWriterequest>(); 
+            Task task = Task.Run(() => {});
+
+
+        }
+        
+
+
+
+
+
+
     
 
-        private void WriteThreadFuncs() {
-                
+        private static void WriteThreadFuncs() {
 
+            while (true) {
+                TermialWriterequest termialWriterequest2;
+                TermialWriterequest termialWriterequest1;
+                bool termialWriterequest = Queuecon.TryDequeue(out termialWriterequest1);
+                if (termialWriterequest)
+                {
+                    if (termialWriterequest1.message != string.Empty)
+                    {
+                        conboxFunc.BoxInfoWrite(termialWriterequest1.Box, termialWriterequest1.startPos, termialWriterequest1.message, termialWriterequest1.Style);
+
+                    }
+                    else { throw new Exception(); }
+                }
+                else { Thread.Sleep(10); }
+
+
+            }
         
         
         
         
         }
+        public static bool checkenqueue(TermialWriterequest req) {
+        
+            Queuecon.Enqueue(req);
+            TermialWriterequest reqrespond;
+            if (Queuecon.TryPeek(out reqrespond) && reqrespond == req) {
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+
+        public Action<TermialWriterequest> writaArequest;
+
+
+        private void Test() { }
+
+
+
+
+        public void writeTest(BoxInfo box) {
+
+
+
+
+            TermialWriterequest termialWriterequest2 = new TermialWriterequest(box, "ik ben een termial write request", new UCOORD(4, 6), new WritingStyle());
+            TermialWriterequest termialWriterequest = new TermialWriterequest(box, "ik ben een termial write request", new UCOORD(4, 4), new WritingStyle());
+            Task task = Task.Run(() => {
+
+                checkenqueue(termialWriterequest);
+                Thread.Sleep(1000);
+                checkenqueue(termialWriterequest2);
+                Thread.Sleep(10);
+                checkenqueue(new TermialWriterequest(box, "pimpamet ik vlieg door jou flat", new UCOORD(10, 7), new WritingStyle()));
+
+
+
+                });
+
+
+
+
+
+
+                WriteThreadFuncs();
 
 
 
@@ -28,6 +110,12 @@ namespace CreamsConsole_utils.src
 
 
 
+
+
+
+
+
+            }
 
        
 

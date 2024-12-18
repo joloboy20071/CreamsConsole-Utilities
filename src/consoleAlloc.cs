@@ -124,7 +124,8 @@ public class consoleAlloc
             Console.BufferWidth = Console.WindowWidth;
             return;
         }
-        throw new NoConsoleInit("console was not init make sure this fucntion is called after the setupCreamsConsole(); ");
+        setupCreamsConsole();
+        ResizeCreamsConsole(x, y);
     
     }
 
