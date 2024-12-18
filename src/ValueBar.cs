@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using CreamsConsole_utils.src;
+using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 
 namespace CreamsConsole_utils
 {
@@ -160,6 +162,90 @@ namespace CreamsConsole_utils
             public char barChar = '\u2588';
 
 
+
+        public void DisplayValueBoxQueue(eventqueue intance, int value) {
+            if (!isActive) { this.progressBox = new Conbox(new Boxsize(Barlength + 4, Barheight + 2), startpos, $"{BarName}'s box", parentBox); }
+
+            conboxFunc.ClearBox(this.progressBox);
+            if (style.showleftBracet | style.showrightBracet)
+            {
+                string straightline = utilFunctions.stringgenerator($" {UnicodeROM.DefaultBoxUnicodeROM.streight}\n", Barheight);
+
+                if (style.showleftBracet)
+                {
+                    string topleft = $"{UnicodeROM.DefaultBoxUnicodeROM.leftup}{UnicodeROM.DefaultBoxUnicodeROM.Line}\n" + straightline.Replace(" ", "");
+                    string bottomleft = $"{UnicodeROM.DefaultBoxUnicodeROM.leftdown}{UnicodeROM.DefaultBoxUnicodeROM.Line}";
+                    string finalL = topleft + bottomleft;
+
+                    TermialWriterequest reqs = new TermialWriterequest(progressBox.GetBoxinfo, finalL, new UCOORD(0, 0), style.bracket);
+
+                    topleft = string.Empty;
+                    bottomleft = string.Empty;
+                    finalL = string.Empty;
+                    bool sta = eventqueue.checkenqueue(reqs);
+                }
+
+                if (style.showrightBracet)
+                {
+                    string topright = $"{UnicodeROM.DefaultBoxUnicodeROM.Line}{UnicodeROM.DefaultBoxUnicodeROM.rightup}\n" + straightline;
+                    string bottomright = $"{UnicodeROM.DefaultBoxUnicodeROM.Line}{UnicodeROM.DefaultBoxUnicodeROM.righdown}";
+                    string finalR = topright + bottomright;
+                    TermialWriterequest reqs = new TermialWriterequest(progressBox.GetBoxinfo,  finalR, new UCOORD(this.GetBarlength + 2, 0), style.bracket);
+
+                    bool sta = eventqueue.checkenqueue(reqs);
+
+
+
+                    topright = string.Empty;
+                    bottomright = string.Empty;
+                    finalR = string.Empty;
+                }
+
+
+            }
+            int taskperTile = (int)(MaxbarValue / Barlength);
+            int amountTile = (int)(value / taskperTile);
+
+
+            string block = utilFunctions.stringgenerator($"█", amountTile);
+            string Lines = utilFunctions.stringgenerator($"{block}\n", Barheight);
+
+
+
+            TermialWriterequest reqst =  new TermialWriterequest(progressBox.GetBoxinfo, Lines, new UCOORD(2, 1),  style.Bar);
+
+            if (style.showBarValue)
+            {
+
+                string valuestring = $"{value}%";
+                var cord = new UCOORD(conboxFunc.GetMiddle(progressBox.width - 1, valuestring), progressBox.height - 1);
+                TermialWriterequest reqes = new TermialWriterequest(progressBox.GetBoxinfo, valuestring, cord, style.Text);
+                valuestring = string.Empty;
+
+            }
+            if (style.showBarName)
+            {
+                var cord = new UCOORD(conboxFunc.GetMiddle(progressBox.width, BarName), 0);
+                TermialWriterequest reqs = new TermialWriterequest(progressBox.GetBoxinfo,  this.BarName, cord, style.Text);  
+
+
+            }
+
+            block = string.Empty;
+            Lines = string.Empty;
+
+
+
+        }
+
+        
+        
+        
+        }
+
+
+
+
             public void DisplayValueBar(int value) {
                 if (!isActive) { this.progressBox = new Conbox(new Boxsize(Barlength + 4,Barheight + 2 ), startpos, $"{BarName}'s box", parentBox); }
 
@@ -186,7 +272,13 @@ namespace CreamsConsole_utils
                     string topright = $"{UnicodeROM.DefaultBoxUnicodeROM.Line}{UnicodeROM.DefaultBoxUnicodeROM.rightup}\n" + straightline;
                     string bottomright = $"{UnicodeROM.DefaultBoxUnicodeROM.Line}{UnicodeROM.DefaultBoxUnicodeROM.righdown}";
                     string finalR = topright + bottomright;
-                    conboxFunc.ConsolewriteMultiline(progressBox, new UCOORD(this.GetBarlength + 2, 0), finalR, style.bracket);
+                     TermialWriterequest reqst= new TermialWriterequest(progressBox.GetBoxinfo,  finalR, new UCOORD(this.GetBarlength + 2, 0), style.bracket);
+
+
+
+
+
+
                     topright = string.Empty;
                     bottomright = string.Empty;
                     finalR = string.Empty;

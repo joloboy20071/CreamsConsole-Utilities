@@ -17,7 +17,7 @@ namespace CreamsConsole_utils.src
 
         public eventqueue() {
             Queuecon = new ConcurrentQueue<TermialWriterequest>(); 
-            Task task = Task.Run(() => {});
+            Task writeTask = Task.Run(() => { MainLoopWriteThread(); });
 
 
         }
@@ -30,7 +30,7 @@ namespace CreamsConsole_utils.src
 
     
 
-        private static void WriteThreadFuncs() {
+        private static void MainLoopWriteThread() {
 
             while (true) {
                 TermialWriterequest termialWriterequest2;
@@ -46,7 +46,7 @@ namespace CreamsConsole_utils.src
                     else { throw new Exception(); }
                 }
                 else { Thread.Sleep(10); }
-
+                
 
             }
         
@@ -68,56 +68,62 @@ namespace CreamsConsole_utils.src
 
 
 
-        public Action<TermialWriterequest> writaArequest;
+       
 
-
-        private void Test() { }
-
-
-
-
-        public void writeTest(BoxInfo box) {
+       }
 
 
 
 
-            TermialWriterequest termialWriterequest2 = new TermialWriterequest(box, "ik ben een termial write request", new UCOORD(4, 6), new WritingStyle());
-            TermialWriterequest termialWriterequest = new TermialWriterequest(box, "ik ben een termial write request", new UCOORD(4, 4), new WritingStyle());
-            Task task = Task.Run(() => {
-
-                checkenqueue(termialWriterequest);
-                Thread.Sleep(1000);
-                checkenqueue(termialWriterequest2);
-                Thread.Sleep(10);
-                checkenqueue(new TermialWriterequest(box, "pimpamet ik vlieg door jou flat", new UCOORD(10, 7), new WritingStyle()));
-
-
-
-                });
+        //public void writeTest(BoxInfo box) {
 
 
 
 
+            //TermialWriterequest termialWriterequest2 = new TermialWriterequest(box, "ik ben een termial write request", new UCOORD(4, 6), new WritingStyle());
+            //TermialWriterequest termialWriterequest = new TermialWriterequest(box, "ik ben een termial write request", new UCOORD(4, 4), new WritingStyle());
+            //Task task = Task.Run(() => {
 
+                
+                
+            //    checkenqueue(termialWriterequest2);
+            //    Thread.Sleep(1000);
+               
 
-                WriteThreadFuncs();
+            //    Task task1 = Task.Run(() =>
+            //    {
+                    
+            //        checkenqueue(termialWriterequest);
+                    
 
+            //    });
+            //    checkenqueue(new TermialWriterequest(box, "pimpamet ik vlieg door jou flat", new UCOORD(10, 7), new WritingStyle()));
 
+            //});
 
 
 
 
 
 
+            //    MainLoopWriteThread();
 
 
 
 
 
 
-            }
+
+
+
+
+
+
+
+
+            //}
 
        
 
-    }
+
 }
