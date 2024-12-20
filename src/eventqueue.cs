@@ -55,14 +55,23 @@ namespace CreamsConsole_utils.src
         
         }
         public static bool checkenqueue(TermialWriterequest req) {
-        
-            Queuecon.Enqueue(req);
-            TermialWriterequest reqrespond;
-            if (Queuecon.TryPeek(out reqrespond) && reqrespond == req) {
-                return true;
-            }
 
-            return false;
+            int trys = 0; 
+            bool valid = true;
+            while (valid) 
+            {
+                Queuecon.Enqueue(req);
+                TermialWriterequest reqrespond;
+                if (Queuecon.TryPeek(out reqrespond) && reqrespond == req)
+                {
+                    
+                    valid = false;
+
+                }
+                trys += 1;
+            }
+            return valid;
+            
         }
 
 

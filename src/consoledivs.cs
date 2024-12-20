@@ -117,18 +117,24 @@ namespace CreamsConsole_utils
         public static void BoxInfoWrite(BoxInfo Boxinfo, UCOORD writingPos, string message, WritingStyle? style = null)
         {
             if (style == null) { style = ConsoleOut.Defaultstyle; }
-            if (writingPos < new UCOORD(Boxinfo.boxsize.width, Boxinfo.boxsize.height))
+            string[] strings = message.Split('\n');
+            if ((strings.Length + writingPos.y) <= Boxinfo.boxsize.height)
             {
-                if ((message.Length + writingPos.x) <= Boxinfo.boxsize.width)
-                {
-                    setConsoleCursor(Boxinfo.globalpos + Boxinfo.globalpos + writingPos);
-                    ConsoleOut.ConsoleWriteStyle(message, style);
-                    Thread.Sleep(200);
-                }
+                for (int i = 0; i < strings.Length; i++)
+                    if (writingPos < new UCOORD(Boxinfo.boxsize.width, Boxinfo.boxsize.height))
+                    {
+                        if ((message.Length + writingPos.x) <= Boxinfo.boxsize.width)
+                        {
+                            writingPos = writingPos + new UCOORD(0, i);
+                            setConsoleCursor(Boxinfo.globalpos + Boxinfo.globalpos + writingPos);
+                            ConsoleOut.ConsoleWriteStyle(strings[i], style);
+                            
+                        }
 
+
+                    }
 
             }
-
         }
 
         /// <summary>
@@ -136,6 +142,7 @@ namespace CreamsConsole_utils
         /// </summary>
         /// <param name="request"></param>
         public static void BoxInfoWrite(TermialWriterequest request) {
+
             BoxInfoWrite(request.Box,request.startPos,request.message,request.Style);
         
         }
