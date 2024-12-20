@@ -123,6 +123,7 @@ namespace CreamsConsole_utils
                 {
                     setConsoleCursor(Boxinfo.globalpos + Boxinfo.globalpos + writingPos);
                     ConsoleOut.ConsoleWriteStyle(message, style);
+                    Thread.Sleep(200);
                 }
 
 

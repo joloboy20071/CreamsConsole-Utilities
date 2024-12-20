@@ -178,11 +178,11 @@ namespace CreamsConsole_utils
                     string finalL = topleft + bottomleft;
 
                     TermialWriterequest reqs = new TermialWriterequest(progressBox.GetBoxinfo, finalL, new UCOORD(0, 0), style.bracket);
-
+                    eventqueue.checkenqueue(reqs);
                     topleft = string.Empty;
                     bottomleft = string.Empty;
                     finalL = string.Empty;
-                    bool sta = eventqueue.checkenqueue(reqs);
+
                 }
 
                 if (style.showrightBracet)
@@ -192,7 +192,7 @@ namespace CreamsConsole_utils
                     string finalR = topright + bottomright;
                     TermialWriterequest reqs = new TermialWriterequest(progressBox.GetBoxinfo,  finalR, new UCOORD(this.GetBarlength + 2, 0), style.bracket);
 
-                    bool sta = eventqueue.checkenqueue(reqs);
+                    eventqueue.checkenqueue(reqs);
 
 
 
@@ -212,21 +212,21 @@ namespace CreamsConsole_utils
 
 
 
-            TermialWriterequest reqst =  new TermialWriterequest(progressBox.GetBoxinfo, Lines, new UCOORD(2, 1),  style.Bar);
+            bool sta = eventqueue.checkenqueue(new TermialWriterequest(progressBox.GetBoxinfo, Lines, new UCOORD(2, 1),  style.Bar));
 
             if (style.showBarValue)
             {
 
                 string valuestring = $"{value}%";
                 var cord = new UCOORD(conboxFunc.GetMiddle(progressBox.width - 1, valuestring), progressBox.height - 1);
-                TermialWriterequest reqes = new TermialWriterequest(progressBox.GetBoxinfo, valuestring, cord, style.Text);
+                eventqueue.checkenqueue( new TermialWriterequest(progressBox.GetBoxinfo, valuestring, cord, style.Text));
                 valuestring = string.Empty;
 
             }
             if (style.showBarName)
             {
                 var cord = new UCOORD(conboxFunc.GetMiddle(progressBox.width, BarName), 0);
-                TermialWriterequest reqs = new TermialWriterequest(progressBox.GetBoxinfo,  this.BarName, cord, style.Text);  
+                eventqueue.checkenqueue(new TermialWriterequest(progressBox.GetBoxinfo,  this.BarName, cord, style.Text));  
 
 
             }
@@ -241,7 +241,7 @@ namespace CreamsConsole_utils
         
         
         
-        }
+        
 
 
 
@@ -260,7 +260,7 @@ namespace CreamsConsole_utils
                     string bottomleft = $"{UnicodeROM.DefaultBoxUnicodeROM.leftdown}{UnicodeROM.DefaultBoxUnicodeROM.Line}";
                     string finalL = topleft + bottomleft;
 
-                    conboxFunc.ConsolewriteMultiline(progressBox, new UCOORD(0, 0), finalL, style.bracket);
+                    eventqueue.checkenqueue(new TermialWriterequest(progressBox.GetBoxinfo,  finalL, new UCOORD(0, 0), style.bracket));
 
                     topleft = string.Empty;
                     bottomleft = string.Empty;
