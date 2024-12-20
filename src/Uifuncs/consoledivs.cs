@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CreamsConsole_utils
 {
-    public class conboxFunc
+    public partial class conboxFunc
     {
         internal static Dictionary<int, Conbox> GetBoxFromId = new Dictionary<int, Conbox>();
 
@@ -96,6 +96,51 @@ namespace CreamsConsole_utils
         
         }
 
+        public static void consolewriteAtpos(Conbox box, UCOORD writingpos, string massage, WritingStyle? style = null)
+        {
+            if (style == null) { style = ConsoleOut.Defaultstyle; }
+
+
+
+            BoxRectUCOORD boxRectUCOORD = box.GetBoxRectuCoord();
+            if (writingpos < boxRectUCOORD.bottomright)
+            {
+
+                if ((massage.Length + writingpos.x) <= box.width)
+                {
+
+                    UCOORD writelocation = GetScreenCoord(box) + writingpos;
+
+                    Console.SetCursorPosition((int)writelocation.x, (int)writelocation.y);
+                    ConsoleOut.ConsoleWriteStyle(massage, style);
+
+
+
+                }
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
         public static int GetMiddle(int width, string center)
         {
             return (int)((width / 2) - (center.Length / 2));
@@ -103,6 +148,22 @@ namespace CreamsConsole_utils
         }
 
 
+        public static void BoxInfoWriteMulti(BoxInfo Boxinfo, UCOORD writingPos, string message, WritingStyle? style = null)
+        {
+            string [] strings = message.Split("\n");
+            if ((int)(strings.Length + writingPos.y) <= Boxinfo.boxsize.height) {
+                for (int i = 0; i < strings.Length;i++) {
+                    BoxInfoWrite(Boxinfo, writingPos + new UCOORD(0,i), strings[i], style);         
+                }
+            }
+        }
+
+
+        public static void BoxInfoWriteMulti(TermialWriterequest request)
+        {
+            BoxInfoWriteMulti(request.Box, request.startPos, request.message, request.Style);
+
+        }
 
 
 
@@ -116,6 +177,7 @@ namespace CreamsConsole_utils
         /// <param name="style"></param>
         public static void BoxInfoWrite(BoxInfo Boxinfo, UCOORD writingPos, string message, WritingStyle? style = null)
         {
+            message = message.Replace("\n", "");
             if (style == null) { style = ConsoleOut.Defaultstyle; }
             string[] strings = message.Split('\n');
             if ((strings.Length + writingPos.y) <= Boxinfo.boxsize.height)
@@ -148,40 +210,7 @@ namespace CreamsConsole_utils
         }
 
 
-        public static void consolewriteAtpos(Conbox box,UCOORD writingpos, string massage,WritingStyle? style = null)
-        {
-            if (style == null) { style = ConsoleOut.Defaultstyle; }
-
-            
-
-            BoxRectUCOORD boxRectUCOORD = box.GetBoxRectuCoord();
-            if (writingpos < boxRectUCOORD.bottomright) {
-
-                if ((massage.Length + writingpos.x) <= box.width)
-                {
-                
-                    UCOORD writelocation = GetScreenCoord(box) + writingpos;
-            
-                    Console.SetCursorPosition((int)writelocation.x,(int)writelocation.y);
-                    ConsoleOut.ConsoleWriteStyle(massage, style);
-                   
-                
-                
-                }
-
-
-
-
-            }
-
-
-
-
-
-
-
-
-        }
+        
         public static void ClearBox(Conbox box)
         {
             var size = box.getboxsize;

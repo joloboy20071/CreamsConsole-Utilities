@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consoledivs", "..\consoledivs\consoledivs.csproj", "{217C7557-E63D-49C2-884B-3CBCF1BD8965}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "boxwrite test", "..\boxwrite test\boxwrite test.csproj", "{9FAD29D8-BCE5-445B-85B7-67121BA9E193}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5FA6CD6A-DA38-4E95-9AEE-7A116C9D011B} = {5FA6CD6A-DA38-4E95-9AEE-7A116C9D011B}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PROJECTS", "PROJECTS", "{7DDDF991-314B-42F6-A2FE-F6398FD22A32}"
 EndProject
