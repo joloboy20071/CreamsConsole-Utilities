@@ -103,6 +103,7 @@ public class consoleAlloc
             Console.BufferHeight = Console.WindowHeight;
             Console.BufferWidth = Console.WindowWidth;
             Console.OutputEncoding = Encoding.UTF8;
+            Console.CursorVisible = false;
             consoleinit = true;
 
 

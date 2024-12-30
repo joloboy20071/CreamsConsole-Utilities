@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Drawing;
 using CreamsConsole_utils;
 using CreamsConsole_utils.src;
 
@@ -12,7 +13,7 @@ eventqueue eventq = new eventqueue();
 
 
 Conbox main = BoxOutline.createBoxOutline(conboxFunc.MainBody);
-TermialWriterequest write = new TermialWriterequest(main.GetBoxinfo, "ik ben een test request\nen ik ben een mutli line", new UCOORD(0, 13), new WritingStyle());
+TermialWriterequest write = new TermialWriterequest(main.GetBoxinfo, "ik ben een test request\nen ik ben een mutli line", new UCOORD(0, 13), new WritingStyle(Color.Red));
 
 
 eventqueue.checkenqueue(write);
