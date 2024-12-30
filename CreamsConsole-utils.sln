@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "boxwrite test", "..\boxwrit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PROJECTS", "PROJECTS", "{7DDDF991-314B-42F6-A2FE-F6398FD22A32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testing", "projects\testing\testing\testing.csproj", "{8BBEEDF4-A040-4384-886A-389EEE286C55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{9FAD29D8-BCE5-445B-85B7-67121BA9E193}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FAD29D8-BCE5-445B-85B7-67121BA9E193}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FAD29D8-BCE5-445B-85B7-67121BA9E193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BBEEDF4-A040-4384-886A-389EEE286C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BBEEDF4-A040-4384-886A-389EEE286C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BBEEDF4-A040-4384-886A-389EEE286C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BBEEDF4-A040-4384-886A-389EEE286C55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

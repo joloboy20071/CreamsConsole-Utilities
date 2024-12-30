@@ -40,7 +40,7 @@ namespace CreamsConsole_utils.src
                 {
                     if (termialWriterequest1.message != string.Empty)
                     {
-                        conboxFunc.BoxInfoWrite(termialWriterequest1.Box, termialWriterequest1.startPos, termialWriterequest1.message, termialWriterequest1.Style);
+                        conboxFunc.BoxInfoWriteMulti(termialWriterequest1.Box, termialWriterequest1.startPos, termialWriterequest1.message, termialWriterequest1.Style);
 
                     }
                     else { throw new Exception(); }
@@ -61,8 +61,10 @@ namespace CreamsConsole_utils.src
             while (valid) 
             {
                 Queuecon.Enqueue(req);
+                
                 TermialWriterequest reqrespond;
-                if (Queuecon.TryPeek(out reqrespond) && reqrespond == req)
+
+                //if (reqrespond == req)
                 {
                     
                     valid = false;
