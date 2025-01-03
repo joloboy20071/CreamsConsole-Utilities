@@ -12,11 +12,11 @@ eventqueue eventq = new eventqueue();
 
 
 
-Conbox main = BoxOutline.createBoxOutline(conboxFunc.MainBody);
+Conbox main = BoxOutline.createBoxOutline(conboxFunc.MainBody, new WritingStyle(), "| main Box |");
 TermialWriterequest write = new TermialWriterequest(main.GetBoxinfo, "ik ben een test request\nen ik ben een mutli line", new UCOORD(0, 13), new WritingStyle(Color.Red));
 
 
-eventqueue.checkenqueue(write);
+
 
 static valueBar initbar(Conbox inoutline, UCOORD pos, string barname)
 {
@@ -41,16 +41,13 @@ Task bar1 = Task.Factory.StartNew(() =>
 
 
     }
-
-   
-
-
-
-
 });
+
+
+
 Task bar2 = Task.Factory.StartNew(() =>
 {
-    valueBar dic = initbar(main, new UCOORD(0, 3), "discord");
+    valueBar dic = initbar(main, new UCOORD(0, 3), "bar 2");
     
 
     for (int i = 0; i < 101; i++)
@@ -63,7 +60,8 @@ Task bar2 = Task.Factory.StartNew(() =>
 
 });
 
-
+Thread.Sleep(2000);
+eventqueue.checkenqueue(write);
 
 
 

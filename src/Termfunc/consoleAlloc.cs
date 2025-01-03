@@ -7,7 +7,7 @@ namespace CreamsConsole_utils;
 public class consoleAlloc
 {
     private const int MF_BYCOMMAND = 0x00000000;
-    const int STD_OUPUT_HANDLE = -11;
+
 
     private const int STD_INPUT_HANDLE = -10;
 

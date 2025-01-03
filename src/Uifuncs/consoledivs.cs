@@ -236,12 +236,19 @@ namespace CreamsConsole_utils
         private static Random random = new Random();
 
         private string name = "";
+        private bool NameSet = false;
 
         public string getname {
             get { return name; }
         }
 
-        public void SetName(string name) { this.name = name; }
+        internal bool nameset { get { return NameSet; } }
+
+
+
+        public void SetName(string name) { this.name = name; 
+                this.NameSet = true;
+        }
 
 
 
@@ -475,15 +482,23 @@ public class BoxOutline
 
 
 
-    public static Conbox createBoxOutline(Conbox box,WritingStyle? style=null) { 
+    public static Conbox createBoxOutline(Conbox box,WritingStyle? style=null,string? name = "", WritingStyle? namestyle=null  ) { 
         var strings = GetBoxStringArray(box);
         UCOORD[] uCOORDs = getUcoords(box);
         conboxFunc.consolewriteAtpos(box, new UCOORD(0, 0), strings[0], style);
         conboxFunc.consolewriteAtpos(box, new UCOORD(0, box.height-1), strings[1],style);
+
         for (int i = 0; i < uCOORDs.Length; i++) {
             conboxFunc.consolewriteAtpos(box, uCOORDs[i], strings[2],style);
         
         }
+        if (name != null)
+        {
+            conboxFunc.consolewriteAtpos(box, new UCOORD(5, 0), name, style);
+        }
+
+
+
         return new Conbox(new Boxsize(box.width - 4, box.height - 2), new COORD(2, 1), $"box in {box.getname}", box);
 
     }
