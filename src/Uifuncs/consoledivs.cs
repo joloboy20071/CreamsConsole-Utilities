@@ -238,6 +238,10 @@ namespace CreamsConsole_utils
         private string name = "";
         private bool NameSet = false;
 
+        public int getID {
+            get { return Id; }
+        }
+
         public string getname {
             get { return name; }
         }
