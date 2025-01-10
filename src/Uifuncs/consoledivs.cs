@@ -32,7 +32,22 @@ namespace CreamsConsole_utils
         public static COORD ZeroZero = new COORD(0, 0);
 
 
-        public static Conbox MainBody = new Conbox(new Boxsize(Console.WindowWidth, Console.WindowHeight), ZeroZero, "mainbody");
+        private static Conbox mainbody = new Conbox(new Boxsize(Console.WindowWidth, Console.WindowHeight), ZeroZero, "mainbody");
+
+        public static void updateMainbody()
+        {
+            mainbody = new Conbox(new Boxsize(Console.WindowWidth, Console.WindowHeight), ZeroZero, "mainbody");
+
+
+        }
+
+
+        public static Conbox MainBody
+        {
+            get {
+                return mainbody;  }
+        }
+
 
 
         //private Dictionary<> BocUcoordContainer = new Dictionary<>;
@@ -300,6 +315,8 @@ namespace CreamsConsole_utils
                 this.setPos(pos.x, pos.y);
                 this.BoxInfo = new BoxInfo(random.Next(), conboxFunc.GetScreenCoord(this), getboxsize, parent.Id, name);
             }
+            if (boxname != string.Empty) { this.SetName(boxname); }
+
 
             conboxFunc.GetBoxFromId[this.Id] = this;
 
@@ -498,7 +515,7 @@ public class BoxOutline
         }
         if (name != null)
         {
-            conboxFunc.consolewriteAtpos(box, new UCOORD(5, 0), name, style);
+            conboxFunc.consolewriteAtpos(box, new UCOORD(5, 0), name, namestyle);
         }
 
 

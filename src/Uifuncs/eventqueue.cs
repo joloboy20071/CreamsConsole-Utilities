@@ -23,13 +23,6 @@ namespace CreamsConsole_utils.src
         }
         
 
-
-
-
-
-
-    
-
         private static void MainLoopWriteThread() {
 
             while (true) {
