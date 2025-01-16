@@ -10,10 +10,31 @@ namespace dashboardv2.ui
 {
     static class Program
     {
-        static void Main(string[] args)
+
+
+
+
+        public static void updateUi()
         {
 
 
+
+
+
+            conboxFunc.ClearBox(conboxFunc.MainBody);
+            Console.Clear();
+            conboxFunc.updateMainbody();
+            DashboardUI.CreateBoxes();
+        }
+
+
+
+
+
+        static void Main(string[] args)
+        {
+
+            int minx= 200, miny=50;
 
             consoleAlloc.setupCreamsConsole();
 
@@ -37,15 +58,20 @@ namespace dashboardv2.ui
                     {
 
 
-                        conboxFunc.ClearBox(conboxFunc.MainBody);
-                        Console.Clear();
-                        conboxFunc.updateMainbody();
-                        DashboardUI.CreateBoxes();
-                        oldX = x;
-                        oldY = y;
+                        if (x < minx | y < miny) { Console.SetWindowSize(minx + 1, miny + 1); oldX = minx + 1; oldY = miny + 1; Thread.Sleep(4);
+                                                  
                         
-                    }
+                        }
 
+
+                        if(Console.WindowWidth>minx-1 && Console.WindowHeight > miny-1) { updateUi(); oldX = Console.WindowWidth;  oldY = Console.WindowHeight; Thread.Sleep(4); }
+
+                        
+
+
+
+                    }
+                    Thread.Sleep(1);
               
 
 

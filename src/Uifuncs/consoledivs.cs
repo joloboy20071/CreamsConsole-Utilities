@@ -390,6 +390,7 @@ namespace CreamsConsole_utils
                 }
                 if (height > parent.height | width > parent.width)
                 {
+                    
                     throw new InvalidBoxSize($"height or width value exceeds parrent box size of {parent.boxsize.ToString()} with given child size of {(new Boxsize(width, height)).ToString()}\n");
 
                 }

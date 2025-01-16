@@ -127,15 +127,15 @@ namespace dashboardv2.ui
             Conbox distance = BoxOutline.createBoxOutline(distanceout, blue, "| Distance to desination |", Default);
             Conbox speed = BoxOutline.createBoxOutline(speedout, blue, "| Speed |", Default);
             Conbox toeren = BoxOutline.createBoxOutline(toerenout, blue, "| Toeren teller |", Default);
-            
 
 
-            Conbox Truckicon = new Conbox(new Boxsize(40, 13), new UCOORD(0, Truckdamage.getboxsize.height-14), "TruckIcon",Truckdamage);
-            Conbox truckTextarea = new Conbox(new Boxsize(Truckdamage.width - 40, Truckdamage.height),new UCOORD(40,0),"TruckDamageText", Truckdamage);
+
+            Conbox Truckicon = new Conbox(new Boxsize(40, 13), new UCOORD(0, Truckdamage.getboxsize.height - 14), "TruckIcon", Truckdamage);
+            Conbox truckTextarea = new Conbox(new Boxsize(Truckdamage.width - 40, Truckdamage.height), new UCOORD(40, 0), "TruckDamageText", Truckdamage);
             Conbox trailerIcon = new Conbox(new Boxsize(50, 11), new UCOORD(0, Trailerdamage.getboxsize.height - 13), "trailerIcon", Trailerdamage);
-            Conbox trailerTextarea = new Conbox(new Boxsize(Trailerdamageout.width - 54, Trailerdamage.height),new UCOORD(50,0) ,"trailer Text place", Trailerdamage);
+            Conbox trailerTextarea = new Conbox(new Boxsize(Trailerdamageout.width - 54, Trailerdamage.height), new UCOORD(50, 0), "trailer Text place", Trailerdamage);
 
-            // write truck and trailer icon to there respective box
+            //write truck and trailer icon to there respective box
             conboxFunc.ConsolewriteMultiline(Truckicon, conboxFunc.ZeroZero, struck);
             conboxFunc.ConsolewriteMultiline(trailerIcon, conboxFunc.ZeroZero, trailer);
 
