@@ -144,6 +144,16 @@ namespace CreamsConsole_utils
         }
 
 
+        public static string stringgenerator(string repeatingstr, int amount=1) {
+            string tempstring = string.Empty;
+            for (int i = 0; i < amount; i++) {
+                tempstring += repeatingstr;
+            }
+        repeatingstr = tempstring;
+        return repeatingstr;
+        
+        }
+
 
         public static void ClearCurrentConsoleLine()
         {
@@ -160,7 +170,7 @@ namespace CreamsConsole_utils
                 for (var i = 0; i < y2 - y1; i++)
                 {
                     Console.SetCursorPosition(0, i + y1);
-                    Console.Write(new string(' ', Console.BufferWidth));
+                    Console.Write(new string(' ', Console.BufferWidth));
                 };
                 Console.SetCursorPosition(0, y1);
             }

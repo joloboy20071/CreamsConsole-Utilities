@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/et --hard HEAD@{1}
+/src.zip
+/CreamsConsole.rar
+/projects/boxwrite test
+/projects/appresize test/dashboardv2.csproj

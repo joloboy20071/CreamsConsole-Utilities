@@ -12,6 +12,8 @@ public class UnicodeROM
 
     public  class DefaultBoxUnicodeROM
     {
+        public readonly static string spacebutno = (string)"\u00A0";
+
         public readonly static string streight = "\u2503";
         public readonly static string Line = "\u2501";
         public readonly static string rightup = "\u2513";

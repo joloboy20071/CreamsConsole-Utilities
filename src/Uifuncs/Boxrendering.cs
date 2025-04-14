@@ -1,12 +1,11 @@
 ﻿
 using System.Drawing;
-using Microsoft.VisualBasic;
 using static CreamsConsole_utils.UnicodeROM;
 namespace CreamsConsole_utils;
 
 
 
-
+[Obsolete("this class is lagecy so please use conbox class instead ")]
 public class Boxrendering
 {
     public static List<BoxType> boxTypes = new List<BoxType>();
@@ -134,6 +133,10 @@ public class Boxrendering
 
     }
 
+    public static void writeAtPost() { }
+
+
+
 
     public static string returnLine(int Witdh, bool IsTop =false ,string? hasTitle = null)
     {
@@ -177,7 +180,7 @@ public class Boxrendering
 
 
         
-        Console.SetCursorPosition(Console.BufferWidth-1, Console.BufferHeight-1);
+        Console.SetCursorPosition(Console.WindowWidth-1, Console.WindowHeight-1);
         var box = new BoxType(location, witdh, height, title);
         boxTypes.Add(box);
         return box;
@@ -185,3 +188,8 @@ public class Boxrendering
 
 
 }
+
+
+
+
+
